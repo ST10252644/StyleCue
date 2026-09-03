@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StyleCue — Style personality quiz</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="page">
+
+    <header class="page__header">
+        <div class="page__header-inner">
+            <div class="page__eyebrow"><span class="dot"></span> Step 2 of 2 · Your profile</div>
+            <h1 class="page__title">What's your style?</h1>
+            <p class="page__lede">
+                Twelve quick questions — clothes, color, and a bit of lifestyle too.
+                Go with whatever you're drawn to first, there's no wrong answer.
+            </p>
+        </div>
+    </header>
+
+    <main class="page__body">
+
+        <section class="calc-panel" id="quiz-panel">
+            <div class="quiz-progress">
+                <div class="quiz-progress__bar">
+                    <div class="quiz-progress__fill" id="progress-fill"></div>
+                </div>
+                <span id="progress-label">Question 1 of 12</span>
+            </div>
+
+            <h2 id="quiz-prompt">—</h2>
+            <div id="quiz-options" class="quiz-options"></div>
+        </section>
+
+        <section class="result" id="result">
+            <div class="result__label">Based on your answers</div>
+
+            <div class="result__hero-img" id="result-hero-img"></div>
+
+            <h3 class="result__shape" id="result-style">—</h3>
+            <p class="result__tagline" id="result-tagline"></p>
+            <p class="result__why" id="result-mood"></p>
+
+            <div class="style-detail-grid">
+                <div><span class="style-detail-label">Palette</span>
+                    <p id="result-palette"></p>
+                </div>
+                <div><span class="style-detail-label">Fabrics</span>
+                    <p id="result-fabrics"></p>
+                </div>
+                <div><span class="style-detail-label">Best for</span>
+                    <p id="result-bestfor"></p>
+                </div>
+            </div>
+
+            <div class="result__gallery" id="result-gallery"></div>
+
+            <div class="result__section">
+                <h4>Key wardrobe pieces</h4>
+                <ul id="result-keypieces"></ul>
+            </div>
+
+            <div class="result__section">
+                <h4>Styling tips</h4>
+                <ul id="result-tips"></ul>
+            </div>
+
+            <div class="result__section">
+                <h4>What to avoid</h4>
+                <ul id="result-avoid"></ul>
+            </div>
+
+            <p id="tie-note" class="tie-note"></p>
+            <p class="result__save-msg" id="save-msg"></p>
+        </section>
+
+        <a href="dashboard.html" class="back-link" style="color:#6b6455;">← Back to dashboard</a>
+    </main>
+
+    <script type="module" src="js/quiz-app.js"></script>
+</body>
+
+</html>

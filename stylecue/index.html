@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StyleCue — Log in or sign up</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Left: editorial hero panel -->
+  <section class="hero">
+    <div class="hero__top"><span class="dot"></span> StyleCue prototype</div>
+
+    <div class="hero__main">
+      <h1 class="hero__wordmark">StyleCue</h1>
+      <hr class="hero__rule" />
+      <p class="hero__tagline">
+        Recommendations built from your body shape and your style personality —
+        not from what everyone else bought.
+      </p>
+
+      <div class="hero__tags" aria-hidden="true">
+        <span class="tag tag--1">Classic</span>
+        <span class="tag tag--2 tag--accent">Your style</span>
+        <span class="tag tag--3">Edgy</span>
+        <span class="tag tag--4">Romantic</span>
+        <span class="tag tag--5">Bohemian</span>
+      </div>
+    </div>
+
+    <div class="hero__foot">Research prototype · body shape × style personality profiling</div>
+  </section>
+
+  <!-- Right: auth panel -->
+  <section class="auth">
+    <div class="auth__card">
+
+      <div class="auth__tabs" role="tablist" aria-label="Log in or sign up">
+        <button class="auth__tab is-active" id="tab-login" role="tab" aria-selected="true">Log in</button>
+        <button class="auth__tab" id="tab-signup" role="tab" aria-selected="false">Sign up</button>
+      </div>
+
+      <div id="message" class="message" role="alert"></div>
+
+      <!-- LOGIN FORM -->
+      <form id="form-login">
+        <h2 class="auth__heading">Welcome back</h2>
+        <p class="auth__subheading">Log in to see your recommendations.</p>
+
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" autocomplete="current-password" required />
+        </div>
+
+        <button type="submit" class="btn-primary" id="login-submit">Log in</button>
+
+        <p class="auth__switch">
+          New to StyleCue? <button type="button" id="switch-to-signup">Sign up</button>
+        </p>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="form-signup" style="display:none;">
+        <h2 class="auth__heading">Create your account</h2>
+        <p class="auth__subheading">Takes a minute. You'll build your style profile next.</p>
+
+        <div class="field">
+          <label for="signup-name">Full name</label>
+          <input id="signup-name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="signup-email">Email</label>
+          <input id="signup-email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="signup-password">Password</label>
+          <input id="signup-password" type="password" autocomplete="new-password" minlength="6" required />
+          <p class="field-hint">At least 6 characters.</p>
+        </div>
+
+        <button type="submit" class="btn-primary" id="signup-submit">Create account</button>
+
+        <p class="auth__switch">
+          Already have an account? <button type="button" id="switch-to-login">Log in</button>
+        </p>
+      </form>
+
+    </div>
+  </section>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

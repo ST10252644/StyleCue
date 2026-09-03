@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StyleCue — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      grid-template-columns: 1fr;
+    }
+
+    .stub {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 34rem;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .stub h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 2.4rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .stub p {
+      color: #6b6455;
+      line-height: 1.6;
+      margin: 0 0 1.5rem;
+    }
+
+    .stub button {
+      padding: 0.7rem 1.2rem;
+    }
+
+    .stub button {
+      width: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stub">
+    <span class="tag tag--accent" style="position:static; margin-bottom:1.5rem;">Logged in</span>
+    <h1>You're in.</h1>
+    <p id="who">Checking your session…</p>
+    <p>Next: find your body shape, then take the style quiz — the lookbook results screen plugs in after that.</p>
+    <a href="bodytype.html" class="btn-primary"
+      style="display:inline-block; text-align:center; text-decoration:none; width:auto; margin-bottom:0.75rem;">Find my
+      body shape</a>
+
+    <a href="quiz.html" class="btn-primary"
+      style="display:inline-block; text-align:center; text-decoration:none; width:auto; margin-bottom:0.75rem; background:transparent; border:1.5px solid var(--lime); color:var(--ink);">Take
+      the style quiz</a>
+
+    <button class="btn-primary" id="logout"
+      style="background:transparent; border:1.5px solid var(--line-on-bone); color:var(--ink); width:auto;">Log
+      out</button>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./js/supabaseClient.js";
+
+    const { data } = await supabase.auth.getSession();
+    if (!data.session) {
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("who").textContent =
+        `Signed in as ${data.session.user.email}.`;
+    }
+
+    document.getElementById("logout").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+
+</html>
