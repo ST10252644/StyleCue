@@ -45,6 +45,7 @@ if (season) {
     <div class="styleguide-section">
       <h2>Your palette, ${season.name}</h2>
       <p>${season.description}</p>
+      <div class="style-photos"><div class="style-photos__item style-photos__item--big" style="background-image:url('${season.images.hero}')"></div></div>
       <div class="swatch-row" style="margin-top:0.75rem;">
         ${season.bestColors.map((c) => `<span class="swatch-chip" style="background:rgba(21,19,14,0.06); color:var(--ink); border-color:var(--line-on-bone);">${c}</span>`).join("")}
       </div>
@@ -71,6 +72,12 @@ if (style) {
       <h2>Your aesthetic, ${style.name}</h2>
       <p>${style.mood} ${style.bestFor}</p>
       <p style="margin-top:0.75rem;"><strong>Key pieces:</strong> ${style.keyPieces.join(", ")}.</p>
+      <div class="style-photos">
+        <div class="style-photos__item style-photos__item--big" style="background-image:url('${style.images.hero}')"></div>
+        <div class="style-photos__item" style="background-image:url('${style.images.palette}')"></div>
+        <div class="style-photos__item" style="background-image:url('${style.images.detail}')"></div>
+      </div>
+      <p class="field-hint"><a href="credits.html">Photo credits</a></p>
     </div>
   `;
 } else {

@@ -164,3 +164,8 @@ body { min-height: 100vh; min-height: 100dvh; }
 body.kb-open .tab-bar { display: none; }
 body.kb-open > main, body.kb-open .page__body, body.kb-open .auth { padding-bottom: 40vh !important; }
 input, textarea, select { scroll-margin: 30vh 0; }
+
+/* ---- Style guide photos ---- */
+.style-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1rem; }
+.style-photos__item { aspect-ratio: 3 / 4; border-radius: 12px; background-size: cover; background-position: center; background-color: #e8e1d0; }
+.style-photos__item--big { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
