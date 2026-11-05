@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#15130e" />
+<title>StyleCue, Your closet</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+<style>body { display: block; }</style>
+</head>
+<body>
+
+  <main class="styleguide">
+    <h1 class="styleguide__title">Your closet</h1>
+    <p class="styleguide__sub">Log what you own, we'll tell you what's missing, and check the fit if you know the garment's measurements.</p>
+
+    <section class="profile-panel">
+      <h2>Add an item</h2>
+      <form id="add-item-form">
+        <div class="measure-grid">
+          <div class="field">
+            <label for="item-name">Name</label>
+            <input id="item-name" type="text" placeholder="e.g. Black leather jacket" required />
+          </div>
+          <div class="field">
+            <label for="item-category">Category</label>
+            <select id="item-category" required>
+              <option value="top">Top</option>
+              <option value="bottom">Bottom</option>
+              <option value="dress">Dress</option>
+              <option value="outerwear">Outerwear</option>
+              <option value="shoes">Shoes</option>
+              <option value="accessory">Accessory</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="item-color">Color</label>
+            <input id="item-color" type="text" placeholder="e.g. Black" />
+          </div>
+        </div>
+
+        <p class="field-hint" style="margin: 0.5rem 0 0.75rem;">Fit check (optional)</p>
+        <div class="unit-toggle" id="fit-mode-toggle" role="group" aria-label="Fit check method">
+          <button type="button" class="is-active" data-mode="none">Skip</button>
+          <button type="button" data-mode="size">By size</button>
+          <button type="button" data-mode="exact">Exact measurements</button>
+        </div>
+
+        <div id="fit-mode-size" style="display:none; margin-top:1rem;">
+          <div class="field">
+            <label for="item-size">Usual size</label>
+            <select id="item-size">
+              <option value="">Select a size</option>
+            </select>
+          </div>
+          <p class="field-hint">Estimated from standard sizing, actual fit varies by brand.</p>
+        </div>
+
+        <div id="fit-mode-exact" style="display:none; margin-top:1rem;">
+          <div class="measure-grid">
+            <div class="field">
+              <label for="item-shoulder">Garment shoulder (cm)</label>
+              <input id="item-shoulder" type="number" step="0.1" min="0" />
+            </div>
+            <div class="field">
+              <label for="item-waist">Garment waist (cm)</label>
+              <input id="item-waist" type="number" step="0.1" min="0" />
+            </div>
+            <div class="field">
+              <label for="item-hip">Garment hip (cm)</label>
+              <input id="item-hip" type="number" step="0.1" min="0" />
+            </div>
+          </div>
+          <p class="field-hint">From the tag or size chart, if you have it, most precise option.</p>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width:auto; margin-top:1rem;">Add to closet</button>
+      </form>
+    </section>
+
+    <section class="profile-panel" id="no-measurements-notice" style="display:none;">
+      <p style="color:#6b6455; font-size:0.9rem; margin:0;">
+        Fit checks need your body measurements, <a href="bodytype.html">find your body shape</a> first (it saves your shoulder/waist/hip numbers automatically).
+      </p>
+    </section>
+
+    <section class="profile-panel">
+      <h2>What's missing</h2>
+      <p id="gap-intro" style="color:#6b6455; font-size:0.9rem; margin-bottom:1rem;"></p>
+      <ul id="gap-list" style="margin:0; padding-left:1.1rem; font-size:0.9rem; line-height:1.7; color:#4a4536;"></ul>
+    </section>
+
+    <section class="profile-panel">
+      <h2>Your items (<span id="item-count">0</span>)</h2>
+      <div id="closet-list"></div>
+      <p id="closet-empty" style="display:none; color:#8a8371; font-size:0.85rem;">
+        Nothing logged yet, add your first piece above.
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="js/closet-app.js"></script>
+</body>
+</html>

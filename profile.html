@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#15130e" />
+<title>StyleCue, Profile</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+<style>body { display: block; }</style>
+</head>
+<body>
+
+  <main class="profile">
+    <h1 class="profile__title">Your profile</h1>
+
+    <section class="profile-panel">
+      <h2>Account</h2>
+      <div class="field">
+        <label for="full-name">Full name</label>
+        <input id="full-name" type="text" />
+      </div>
+      <p class="field-hint" id="email-line" style="margin-bottom:1rem;"></p>
+      <button class="btn-primary" id="save-name" style="width:auto;">Save changes</button>
+      <span id="save-name-msg" style="margin-left:0.75rem; font-size:0.85rem; color:#4d5900;"></span>
+    </section>
+
+    <section class="profile-panel">
+      <h2>Your style profile</h2>
+      <div class="profile-badges">
+        <div class="profile-badge" id="badge-bodyshape">
+          <div class="profile-badge__label">BODY SHAPE</div>
+          <div class="profile-badge__value" id="bodyshape-value">Not set</div>
+          <a href="bodytype.html" class="profile-badge__retake">Retake →</a>
+        </div>
+        <div class="profile-badge" id="badge-style">
+          <div class="profile-badge__label">STYLE PERSONALITY</div>
+          <div class="profile-badge__value" id="style-value">Not set</div>
+          <a href="quiz.html" class="profile-badge__retake">Retake →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile-panel">
+      <h2>Saved looks</h2>
+      <div class="saved-grid" id="saved-grid"></div>
+      <p class="saved-empty" id="saved-empty" style="display:none;">
+        Nothing saved yet, head to your <a href="library.html">look library</a> and tap the heart on anything you like.
+      </p>
+    </section>
+    <section class="profile-panel">
+      <h2>More</h2>
+      <div class="more-list">
+        <a href="thinkitover.html" class="more-list__item">Think it over <span>›</span></a>
+        <a href="occasions.html" class="more-list__item">Occasions <span>›</span></a>
+        <a href="styleguide.html" class="more-list__item">Style guide <span>›</span></a>
+        <a href="season.html" class="more-list__item">Colour season <span>›</span></a>
+        <a href="credits.html" class="more-list__item">Photo credits <span>›</span></a>
+      </div>
+      <button class="btn-ghost" id="logout" style="margin-top:1rem;">Log out</button>
+    </section>
+  </main>
+
+  <script type="module" src="js/profile-app.js"></script>
+</body>
+</html>

@@ -1,85 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StyleCue — Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    body {
-      grid-template-columns: 1fr;
-    }
-
-    .stub {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      max-width: 34rem;
-      margin: 0 auto;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-
-    .stub h1 {
-      font-family: 'Fraunces', serif;
-      font-weight: 500;
-      font-size: 2.4rem;
-      margin: 0 0 0.5rem;
-    }
-
-    .stub p {
-      color: #6b6455;
-      line-height: 1.6;
-      margin: 0 0 1.5rem;
-    }
-
-    .stub button {
-      padding: 0.7rem 1.2rem;
-    }
-
-    .stub button {
-      width: auto;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#15130e" />
+<title>StyleCue, Dashboard</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+<style>body { display: block; }</style>
 </head>
-
 <body>
-  <div class="stub">
-    <span class="tag tag--accent" style="position:static; margin-bottom:1.5rem;">Logged in</span>
-    <h1>You're in.</h1>
-    <p id="who">Checking your session…</p>
-    <p>Next: find your body shape, then take the style quiz — the lookbook results screen plugs in after that.</p>
-    <a href="bodytype.html" class="btn-primary"
-      style="display:inline-block; text-align:center; text-decoration:none; width:auto; margin-bottom:0.75rem;">Find my
-      body shape</a>
 
-    <a href="quiz.html" class="btn-primary"
-      style="display:inline-block; text-align:center; text-decoration:none; width:auto; margin-bottom:0.75rem; background:transparent; border:1.5px solid var(--lime); color:var(--ink);">Take
-      the style quiz</a>
+  <main class="dash">
+    <h1 class="dash__greeting" id="greeting">Hey there.</h1>
+    <p class="dash__sub" id="sub">Here's where your profile stands.</p>
 
-    <button class="btn-primary" id="logout"
-      style="background:transparent; border:1.5px solid var(--line-on-bone); color:var(--ink); width:auto;">Log
-      out</button>
-  </div>
+    <div class="dash__grid dash__grid--3">
+      <div class="dash-card" id="card-bodyshape">
+        <div class="dash-card__label">BODY SHAPE</div>
+        <div class="dash-card__value">Not set yet</div>
+        <p class="dash-card__hint">Three quick measurements is all it takes.</p>
+        <a href="bodytype.html">Find my body shape →</a>
+      </div>
+      <div class="dash-card" id="card-style">
+        <div class="dash-card__label">STYLE PERSONALITY</div>
+        <div class="dash-card__value">Not set yet</div>
+        <p class="dash-card__hint">Twelve questions, no wrong answers.</p>
+        <a href="quiz.html">Take the style quiz →</a>
+      </div>
+      <div class="dash-card" id="card-season">
+        <div class="dash-card__label">COLOR SEASON</div>
+        <div class="dash-card__value">Not set yet</div>
+        <p class="dash-card__hint">Four questions on undertone and depth.</p>
+        <a href="season.html">Find my season →</a>
+      </div>
+    </div>
+
+    <div class="dash__actions dash__actions--3">
+      <a href="recommendations.html" class="dash-action">
+        <div class="dash-action__title">Recommendations</div>
+        <p class="dash-action__desc">Ranked catalogue matches with the score shown for every item.</p>
+      </a>
+      <a href="library.html" class="dash-action">
+        <div class="dash-action__title">Look library</div>
+        <p class="dash-action__desc">Browse looks matched to your body shape and style.</p>
+      </a>
+      <a href="closet.html" class="dash-action">
+        <div class="dash-action__title">Your closet</div>
+        <p class="dash-action__desc">Log what you own, check fit, and spot wardrobe gaps.</p>
+      </a>
+      <a href="occasions.html" class="dash-action">
+        <div class="dash-action__title">Occasions</div>
+        <p class="dash-action__desc">Outfit ideas for work, dates, weddings and more.</p>
+      </a>
+      <a href="styleguide.html" class="dash-action">
+        <div class="dash-action__title">Style guide</div>
+        <p class="dash-action__desc">What to wear for your body shape, style and season.</p>
+      </a>
+      <a href="thinkitover.html" class="dash-action">
+        <div class="dash-action__title">Think it over</div>
+        <p class="dash-action__desc">Saved items to decide on calmly, with no timer.</p>
+      </a>
+      <a href="profile.html" class="dash-action">
+        <div class="dash-action__title">Your profile</div>
+        <p class="dash-action__desc">Account details, saved looks, and retake options.</p>
+      </a>
+    </div>
+  </main>
 
   <script type="module">
     import { supabase } from "./js/supabaseClient.js";
+    import { STYLE_TYPES } from "./js/styleTypes.js";
+    import { BODY_TYPES } from "./js/bodyShape.js";
+    import { SEASON_TYPES } from "./js/seasonTypes.js";
+    import { renderNav } from "./js/nav.js";
 
-    const { data } = await supabase.auth.getSession();
-    if (!data.session) {
+    renderNav("dashboard");
+
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (!sessionData.session) {
       window.location.href = "index.html";
+    }
+    const user = sessionData.session.user;
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("full_name, body_shape, style_personality, season")
+      .eq("id", user.id)
+      .single();
+
+    const name = profile?.full_name || user.user_metadata?.full_name || user.email.split("@")[0];
+    document.getElementById("greeting").textContent = `Hey, ${name}.`;
+
+    const bodyCard = document.getElementById("card-bodyshape");
+    const styleCard = document.getElementById("card-style");
+
+    if (profile?.body_shape) {
+      bodyCard.querySelector(".dash-card__value").textContent = BODY_TYPES[profile.body_shape].name;
+      bodyCard.querySelector("a").textContent = "Retake →";
     } else {
-      document.getElementById("who").textContent =
-        `Signed in as ${data.session.user.email}.`;
+      bodyCard.classList.add("dash-card--empty");
     }
 
-    document.getElementById("logout").addEventListener("click", async () => {
-      await supabase.auth.signOut();
-      window.location.href = "index.html";
-    });
+    if (profile?.style_personality) {
+      styleCard.querySelector(".dash-card__value").textContent = STYLE_TYPES[profile.style_personality].name;
+      styleCard.querySelector("a").textContent = "Retake →";
+    } else {
+      styleCard.classList.add("dash-card--empty");
+    }
+
+    const seasonCard = document.getElementById("card-season");
+    if (profile?.season && SEASON_TYPES[profile.season]) {
+      seasonCard.querySelector(".dash-card__value").textContent = SEASON_TYPES[profile.season].name;
+      seasonCard.querySelector("a").textContent = "Retake →";
+    } else {
+      seasonCard.classList.add("dash-card--empty");
+    }
+
+    document.getElementById("sub").textContent =
+      profile?.body_shape && profile?.style_personality && profile?.season
+        ? "Your profile's complete, see your recommendations and look library."
+        : "Finish your profile to unlock matched looks.";
   </script>
 </body>
-
 </html>

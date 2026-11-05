@@ -64,8 +64,9 @@ formSignup.addEventListener("submit", async (e) => {
   }
 
   if (data.session) {
-    // Email confirmation is off — user is logged in immediately.
-    window.location.href = "dashboard.html";
+    // Email confirmation is off, user is logged in immediately.
+    // New users go through onboarding first; returning users (login below) go straight to the dashboard.
+    window.location.href = "onboarding.html";
   } else {
     showMessage(
       "Account created. Check your email to confirm before logging in.",
@@ -95,10 +96,23 @@ formLogin.addEventListener("submit", async (e) => {
     return;
   }
 
-  window.location.href = "dashboard.html";
+  await redirectByProfileStatus();
 });
 
-// If already logged in, skip straight to the dashboard.
+async function redirectByProfileStatus() {
+  const { data: sessionData } = await supabase.auth.getSession();
+  const userId = sessionData.session?.user?.id;
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("body_shape, style_personality, season")
+    .eq("id", userId)
+    .single();
+
+  const complete = profile?.body_shape && profile?.style_personality && profile?.season;
+  window.location.href = complete ? "dashboard.html" : "onboarding.html";
+}
+
+// If already logged in, route based on whether onboarding is finished.
 supabase.auth.getSession().then(({ data }) => {
-  if (data.session) window.location.href = "dashboard.html";
+  if (data.session) redirectByProfileStatus();
 });

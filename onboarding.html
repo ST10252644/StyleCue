@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#15130e" />
+<title>StyleCue, Set up your profile</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+</head>
+<body class="page">
+
+  <header class="page__header">
+    <div class="page__header-inner">
+      <div class="page__eyebrow"><span class="dot"></span> <span id="section-label">Section 1 of 3 · Body shape</span></div>
+      <h1 class="page__title" id="section-title">Let's set up your profile</h1>
+      <p class="page__lede" id="section-lede">
+        Three quick steps, body shape, style, and color season. Takes about 3 minutes.
+      </p>
+    </div>
+  </header>
+
+  <main class="page__body">
+
+    <div class="quiz-progress" style="margin-bottom:2rem;">
+      <div class="quiz-progress__bar"><div class="quiz-progress__fill" id="overall-progress-fill" style="width:0%;"></div></div>
+      <span id="overall-progress-label">Getting started…</span>
+    </div>
+
+    <!-- ===== Section 1: Body shape ===== -->
+    <section class="calc-panel" id="section-bodyshape">
+      <h2>Enter your measurements</h2>
+      <p>Use a soft tape measure, worn snug but not tight, over light clothing.</p>
+
+      <form id="form-measure">
+        <div class="measure-grid">
+          <div class="field">
+            <label for="m-shoulder">Shoulders</label>
+            <input id="m-shoulder" type="number" step="0.1" min="1" required />
+          </div>
+          <div class="field">
+            <label for="m-waist">Waist</label>
+            <input id="m-waist" type="number" step="0.1" min="1" required />
+          </div>
+          <div class="field">
+            <label for="m-hip">Hips</label>
+            <input id="m-hip" type="number" step="0.1" min="1" required />
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" style="max-width: 14rem;">Continue</button>
+      </form>
+    </section>
+
+    <!-- ===== Section 2: Style quiz ===== -->
+    <section class="calc-panel" id="section-style" style="display:none;">
+      <div class="quiz-progress">
+        <div class="quiz-progress__bar"><div class="quiz-progress__fill" id="style-progress-fill"></div></div>
+        <span id="style-progress-label">Question 1 of 12</span>
+      </div>
+      <h2 id="style-prompt">-</h2>
+      <div id="style-options" class="quiz-options"></div>
+    </section>
+
+    <!-- ===== Section 3: Season quiz ===== -->
+    <section class="calc-panel" id="section-season" style="display:none;">
+      <div class="quiz-progress">
+        <div class="quiz-progress__bar"><div class="quiz-progress__fill" id="season-progress-fill"></div></div>
+        <span id="season-progress-label">Question 1 of 4</span>
+      </div>
+      <h2 id="season-prompt">-</h2>
+      <div id="season-options" class="quiz-options"></div>
+    </section>
+
+    <!-- ===== Done ===== -->
+    <section class="result" id="section-done" style="display:none;">
+      <div class="result__label">You're all set</div>
+      <h3 class="result__shape">Your profile is ready.</h3>
+      <p class="result__why" id="done-summary"></p>
+      <a href="styleguide.html" class="btn-primary" style="display:inline-block; width:auto; text-decoration:none; text-align:center; margin-top:1rem;">See your style guide</a>
+    </section>
+
+  </main>
+
+  <script type="module" src="js/onboarding.js"></script>
+</body>
+</html>

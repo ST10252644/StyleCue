@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>StyleCue, Photo credits</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+<style>body { display: block; } .credit { display:grid; grid-template-columns:4rem 1fr; gap:.8rem; padding:.8rem 0; border-top:1px solid var(--line-on-bone); font-size:.85rem; line-height:1.5; } .credit img { width:4rem; height:5rem; object-fit:cover; border-radius:8px; } .credit a { color:var(--ink); }</style>
+</head>
+<body>
+  <main class="styleguide">
+    <h1 class="styleguide__title">Photo credits</h1>
+    <p class="styleguide__sub">Photos in this prototype come from Unsplash and are used under the Unsplash licence. Images marked as illustrations were drawn for this prototype.</p>
+    <div id="list"></div>
+  </main>
+  <script type="module">
+    import { renderNav } from "./js/nav.js";
+    renderNav("profile");
+    const list = document.getElementById("list");
+    try {
+      const res = await fetch("images/credits.json");
+      if (!res.ok) throw new Error("none");
+      const items = await res.json();
+      list.innerHTML = [].concat(items).map((c) => `
+        <div class="credit"><img src="${c.path}" alt="" />
+        <div><a href="${c.photoUrl}" target="_blank" rel="noopener">${c.title}</a><br/>
+        Photo by <a href="${c.photographerUrl}" target="_blank" rel="noopener">${c.photographer}</a> (${c.year}) on Unsplash</div></div>`).join("");
+    } catch {
+      list.innerHTML = '<div class="styleguide-nudge">No photos have been added yet. The style images are drawn illustrations.</div>';
+    }
+  </script>
+</body>
+</html>

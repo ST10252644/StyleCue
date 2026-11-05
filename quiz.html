@@ -1,86 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StyleCue — Style personality quiz</title>
-    <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#15130e" />
+<title>StyleCue, Style personality quiz</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 </head>
-
 <body class="page">
 
-    <header class="page__header">
-        <div class="page__header-inner">
-            <div class="page__eyebrow"><span class="dot"></span> Step 2 of 2 · Your profile</div>
-            <h1 class="page__title">What's your style?</h1>
-            <p class="page__lede">
-                Twelve quick questions — clothes, color, and a bit of lifestyle too.
-                Go with whatever you're drawn to first, there's no wrong answer.
-            </p>
-        </div>
-    </header>
+  <header class="page__header">
+    <div class="page__header-inner">
+      <div class="page__eyebrow"><span class="dot"></span> Step 2 · Your profile</div>
+      <h1 class="page__title">What's your style personality?</h1>
+      <p class="page__lede">
+        Twelve quick questions, clothes, color, and a bit of lifestyle too.
+        Go with whatever you're drawn to first, there's no wrong answer.
+      </p>
+    </div>
+  </header>
 
-    <main class="page__body">
+  <main class="page__body">
 
-        <section class="calc-panel" id="quiz-panel">
-            <div class="quiz-progress">
-                <div class="quiz-progress__bar">
-                    <div class="quiz-progress__fill" id="progress-fill"></div>
-                </div>
-                <span id="progress-label">Question 1 of 12</span>
-            </div>
+    <section class="calc-panel" id="quiz-panel">
+      <div class="quiz-progress">
+        <div class="quiz-progress__bar"><div class="quiz-progress__fill" id="progress-fill"></div></div>
+        <span id="progress-label">Question 1 of 12</span>
+      </div>
 
-            <h2 id="quiz-prompt">—</h2>
-            <div id="quiz-options" class="quiz-options"></div>
-        </section>
+      <h2 id="quiz-prompt">-</h2>
+      <div id="quiz-options" class="quiz-options"></div>
+    </section>
 
-        <section class="result" id="result">
-            <div class="result__label">Based on your answers</div>
+    <section class="calc-panel" id="calculating-panel" style="display:none; text-align:center;">
+      <div class="spinner"></div>
+      <p style="margin-top:1rem; color:#6b6455;">Finding your style…</p>
+    </section>
 
-            <div class="result__hero-img" id="result-hero-img"></div>
+    <section class="result" id="result">
+      <div class="result__label">Based on your answers</div>
 
-            <h3 class="result__shape" id="result-style">—</h3>
-            <p class="result__tagline" id="result-tagline"></p>
-            <p class="result__why" id="result-mood"></p>
+      <div class="result__hero-img" id="result-hero-img"></div>
 
-            <div class="style-detail-grid">
-                <div><span class="style-detail-label">Palette</span>
-                    <p id="result-palette"></p>
-                </div>
-                <div><span class="style-detail-label">Fabrics</span>
-                    <p id="result-fabrics"></p>
-                </div>
-                <div><span class="style-detail-label">Best for</span>
-                    <p id="result-bestfor"></p>
-                </div>
-            </div>
+      <h3 class="result__shape" id="result-style">-</h3>
+      <p class="result__tagline" id="result-tagline"></p>
+      <p class="result__why" id="result-mood"></p>
 
-            <div class="result__gallery" id="result-gallery"></div>
+      <div class="style-detail-grid">
+        <div><span class="style-detail-label">Palette</span><p id="result-palette"></p></div>
+        <div><span class="style-detail-label">Fabrics</span><p id="result-fabrics"></p></div>
+        <div><span class="style-detail-label">Best for</span><p id="result-bestfor"></p></div>
+      </div>
 
-            <div class="result__section">
-                <h4>Key wardrobe pieces</h4>
-                <ul id="result-keypieces"></ul>
-            </div>
+      <div class="result__gallery" id="result-gallery"></div>
 
-            <div class="result__section">
-                <h4>Styling tips</h4>
-                <ul id="result-tips"></ul>
-            </div>
+      <div class="result__section">
+        <h4>Your full style breakdown</h4>
+        <div class="chart-wrap"><canvas id="style-radar"></canvas></div>
+      </div>
 
-            <div class="result__section">
-                <h4>What to avoid</h4>
-                <ul id="result-avoid"></ul>
-            </div>
+      <div class="result__section">
+        <h4>Key wardrobe pieces</h4>
+        <ul id="result-keypieces"></ul>
+      </div>
 
-            <p id="tie-note" class="tie-note"></p>
-            <p class="result__save-msg" id="save-msg"></p>
-        </section>
+      <div class="result__section">
+        <h4>Styling tips</h4>
+        <ul id="result-tips"></ul>
+      </div>
 
-        <a href="dashboard.html" class="back-link" style="color:#6b6455;">← Back to dashboard</a>
-    </main>
+      <div class="result__section">
+        <h4>What to avoid</h4>
+        <ul id="result-avoid"></ul>
+      </div>
 
-    <script type="module" src="js/quiz-app.js"></script>
+      <button class="btn-primary" id="share-btn" type="button" style="width:auto; margin-top:1.5rem;">Share your style card</button>
+
+      <p id="tie-note" class="tie-note"></p>
+      <p class="result__save-msg" id="save-msg"></p>
+    </section>
+
+    <a href="season.html" class="back-link" style="color:#6b6455;">Continue to your color season →</a>
+  </main>
+
+  <script type="module" src="js/quiz-app.js"></script>
 </body>
-
 </html>

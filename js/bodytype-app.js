@@ -1,36 +1,40 @@
 import { supabase } from "./supabaseClient.js";
 import { classifyBodyShape, BODY_TYPES } from "./bodyShape.js";
+import { renderNav } from "./nav.js";
+import { showToast } from "./toast.js";
+
+renderNav("bodytype");
 
 // Require login
 const { data: sessionData } = await supabase.auth.getSession();
 if (!sessionData.session) {
-    window.location.href = "index.html";
+  window.location.href = "index.html";
 }
 const userId = sessionData.session?.user?.id;
 
-// ---- Unit toggle (label only — the math is ratio-based, so units don't matter) ----
+// ---- Unit toggle (label only, the math is ratio-based, so units don't matter) ----
 const unitCm = document.getElementById("unit-cm");
 const unitIn = document.getElementById("unit-in");
 unitCm.addEventListener("click", () => {
-    unitCm.classList.add("is-active");
-    unitIn.classList.remove("is-active");
+  unitCm.classList.add("is-active");
+  unitIn.classList.remove("is-active");
 });
 unitIn.addEventListener("click", () => {
-    unitIn.classList.add("is-active");
-    unitCm.classList.remove("is-active");
+  unitIn.classList.add("is-active");
+  unitCm.classList.remove("is-active");
 });
 
 // ---- Render the five reference cards ----
 const typeList = document.getElementById("type-list");
 
 function renderTypeCards(matchedKey = null) {
-    typeList.innerHTML = "";
-    Object.entries(BODY_TYPES).forEach(([key, type]) => {
-        const card = document.createElement("div");
-        card.className = "type-card" + (key === matchedKey ? " is-match" : "");
-        card.innerHTML = `
+  typeList.innerHTML = "";
+  Object.entries(BODY_TYPES).forEach(([key, type]) => {
+    const card = document.createElement("div");
+    card.className = "type-card" + (key === matchedKey ? " is-match" : "");
+    card.innerHTML = `
       <div class="type-card__img">
-        <img src="images/${key === 'invertedTriangle' ? 'inverted-triangle' : key}.jpg" alt="${type.name} body shape" />
+        Add your<br />${type.name}<br />image here
       </div>
       <div>
         <div class="type-card__name">
@@ -40,8 +44,8 @@ function renderTypeCards(matchedKey = null) {
         <p class="type-card__desc">${type.desc}</p>
       </div>
     `;
-        typeList.appendChild(card);
-    });
+    typeList.appendChild(card);
+  });
 }
 
 renderTypeCards();
@@ -56,40 +60,45 @@ const saveMsg = document.getElementById("save-msg");
 const submitBtn = document.getElementById("calc-submit");
 
 form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const shoulder = parseFloat(document.getElementById("m-shoulder").value);
-    const waist = parseFloat(document.getElementById("m-waist").value);
-    const hip = parseFloat(document.getElementById("m-hip").value);
+  const shoulder = parseFloat(document.getElementById("m-shoulder").value);
+  const waist = parseFloat(document.getElementById("m-waist").value);
+  const hip = parseFloat(document.getElementById("m-hip").value);
 
-    if (!shoulder || !waist || !hip) return;
+  if (!shoulder || !waist || !hip) return;
 
-    const result = classifyBodyShape(shoulder, waist, hip);
+  const result = classifyBodyShape(shoulder, waist, hip);
 
-    resultShape.textContent = result.name;
-    resultReason.textContent = result.reason;
-    resultDesc.textContent = result.desc;
-    resultEl.classList.add("is-visible");
-    resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  resultShape.textContent = result.name;
+  resultReason.textContent = result.reason;
+  resultDesc.textContent = result.desc;
+  resultEl.classList.add("is-visible", "reveal-in");
+  resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    renderTypeCards(result.key);
+  renderTypeCards(result.key);
 
-    // Save to the profiles table so it's ready for the recommendation logic later.
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Saving…";
+  // Save to the profiles table so it's ready for the recommendation logic later.
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Saving…";
 
-    const { error } = await supabase
-        .from("profiles")
-        .upsert({ id: userId, body_shape: result.key }, { onConflict: "id" });
+  const { error } = await supabase
+    .from("profiles")
+    .upsert(
+      { id: userId, body_shape: result.key, shoulder_cm: shoulder, waist_cm: waist, hip_cm: hip },
+      { onConflict: "id" }
+    );
 
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Find my shape";
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Find my shape";
 
-    if (error) {
-        saveMsg.textContent =
-            "Result calculated, but saving to your profile failed — you'll need a profiles table set up in Supabase first (see README).";
-    } else {
-        saveMsg.textContent = "Saved to your profile.";
-    }
-    saveMsg.classList.add("is-visible");
+  if (error) {
+    saveMsg.textContent =
+      "Result calculated, but saving to your profile failed, you'll need a profiles table set up in Supabase first (see README).";
+    showToast("Couldn't save your body shape, check your profile setup.", "error");
+  } else {
+    saveMsg.textContent = "Saved to your profile.";
+    showToast("Body shape saved to your profile.");
+  }
+  saveMsg.classList.add("is-visible");
 });
