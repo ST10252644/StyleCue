@@ -71,7 +71,7 @@ export const STYLE_TYPES = {
     keywords: "minimalist outfit clean monochrome",
     images: {
       hero: "images/styles/minimalist/hero.jpg",
-      palette: "images/styles/minimalist/palette.jpg",
+      palette: "https://images.unsplash.com/photo-1653875842174-429c1b467548?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDUzMzg5fDB8MXxzZWFyY2h8Mnx8d29tYW4lMjBtaW5pbWFsaXN0JTIwb3V0Zml0fGVufDF8MXx8fDE3OTM4ODUxNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       detail: "images/styles/minimalist/detail.jpg",
     },
   },
@@ -186,7 +186,7 @@ export const STYLE_TYPES = {
     keywords: "streetwear outfit oversized sneakers",
     images: {
       hero: "images/styles/streetwear/hero.jpg",
-      palette: "images/styles/streetwear/palette.jpg",
+      palette: "https://images.unsplash.com/photo-1611129368572-4e3b759469a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDUzMzg5fDB8MXxzZWFyY2h8MTR8fHdvbWFuJTIwc3RyZWV0d2VhciUyMG91dGZpdHxlbnwxfDF8fHwxNzkzODg1MTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       detail: "images/styles/streetwear/detail.jpg",
     },
   },
@@ -255,7 +255,7 @@ export const STYLE_TYPES = {
     keywords: "athleisure outfit sporty sneakers",
     images: {
       hero: "images/styles/sporty/hero.jpg",
-      palette: "images/styles/sporty/palette.jpg",
+      palette: "https://images.unsplash.com/photo-1768929096134-f45af7839e83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDUzMzg5fDB8MXxzZWFyY2h8MTJ8fHdvbWFuJTIwYXRobGVpc3VyZSUyMG91dGZpdHxlbnwxfDF8fHwxNzkzODg1MTY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       detail: "images/styles/sporty/detail.jpg",
     },
   },
@@ -278,7 +278,7 @@ export const STYLE_TYPES = {
     keywords: "vintage retro outfit high waisted",
     images: {
       hero: "images/styles/vintage/hero.jpg",
-      palette: "images/styles/vintage/palette.jpg",
+      palette: "https://images.unsplash.com/photo-1619794724492-651397287d94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDUzMzg5fDB8MXxzZWFyY2h8Mnx8d29tYW4lMjB2aW50YWdlJTIwb3V0Zml0fGVufDF8MXx8fDE3OTM4ODUxNjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       detail: "images/styles/vintage/detail.jpg",
     },
   },
@@ -301,7 +301,7 @@ export const STYLE_TYPES = {
     keywords: "parisian chic outfit trench neutral",
     images: {
       hero: "images/styles/parisian/hero.jpg",
-      palette: "images/styles/parisian/palette.jpg",
+      palette: "https://images.unsplash.com/photo-1788999423265-706b851ef85c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDUzMzg5fDB8MXxzZWFyY2h8MTF8fHdvbWFuJTIwcGFyaXNpYW4lMjBzdHlsZSUyMG91dGZpdHxlbnwxfDF8fHwxNzkzODg1MTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       detail: "images/styles/parisian/detail.jpg",
     },
   },
@@ -347,7 +347,7 @@ export const STYLE_TYPES = {
     keywords: "coastal resort outfit linen",
     images: {
       hero: "images/styles/coastal/hero.jpg",
-      palette: "images/styles/coastal/palette.jpg",
+      palette: "https://images.unsplash.com/photo-1784385411619-f67767c966fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMDUzMzg5fDB8MXxzZWFyY2h8MXx8d29tYW4lMjBjb2FzdGFsJTIwb3V0Zml0fGVufDF8MXx8fDE3OTM4ODUxNzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       detail: "images/styles/coastal/detail.jpg",
     },
   },
