@@ -151,3 +151,16 @@ html, body { overflow-x: hidden; max-width: 100%; }
   .toast-stack { left: 50%; }
 }
 :root { color-scheme: light; }
+
+/* ---- Password eye ---- */
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 4.5rem !important; width: 100%; }
+.pw-eye { position: absolute; right: 0.35rem; top: 50%; transform: translateY(-50%); min-width: 56px; min-height: 40px; border: 0; background: transparent; color: var(--ink); font: 600 0.85rem 'Inter', sans-serif; text-decoration: underline; cursor: pointer; border-radius: 8px; }
+.pw-eye:active { background: rgba(21,19,14,0.06); }
+
+/* ---- Keyboard open: keep scrolling working ---- */
+html, body { height: auto; }
+body { min-height: 100vh; min-height: 100dvh; }
+body.kb-open .tab-bar { display: none; }
+body.kb-open > main, body.kb-open .page__body, body.kb-open .auth { padding-bottom: 40vh !important; }
+input, textarea, select { scroll-margin: 30vh 0; }

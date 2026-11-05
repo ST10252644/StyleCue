@@ -12,17 +12,7 @@ if (!sessionData.session) {
 }
 const userId = sessionData.session?.user?.id;
 
-// ---- Unit toggle (label only, the math is ratio-based, so units don't matter) ----
-const unitCm = document.getElementById("unit-cm");
-const unitIn = document.getElementById("unit-in");
-unitCm.addEventListener("click", () => {
-  unitCm.classList.add("is-active");
-  unitIn.classList.remove("is-active");
-});
-unitIn.addEventListener("click", () => {
-  unitIn.classList.add("is-active");
-  unitCm.classList.remove("is-active");
-});
+import { cmValue } from "./ui.js";
 
 // ---- Render the five reference cards ----
 const typeList = document.getElementById("type-list");
@@ -62,9 +52,9 @@ const submitBtn = document.getElementById("calc-submit");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const shoulder = parseFloat(document.getElementById("m-shoulder").value);
-  const waist = parseFloat(document.getElementById("m-waist").value);
-  const hip = parseFloat(document.getElementById("m-hip").value);
+  const shoulder = cmValue(document.getElementById("m-shoulder"));
+  const waist = cmValue(document.getElementById("m-waist"));
+  const hip = cmValue(document.getElementById("m-hip"));
 
   if (!shoulder || !waist || !hip) return;
 

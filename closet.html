@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
 <meta name="theme-color" content="#15130e" />
 <title>StyleCue, Your closet</title>
 <link rel="stylesheet" href="css/style.css" />
@@ -58,18 +58,23 @@
         </div>
 
         <div id="fit-mode-exact" style="display:none; margin-top:1rem;">
+          <div class="unit-toggle" role="group" aria-label="Measurement unit">
+        <button type="button" id="unit-cm" class="is-active">cm</button>
+        <button type="button" id="unit-in">inches</button>
+      </div>
+
           <div class="measure-grid">
             <div class="field">
-              <label for="item-shoulder">Garment shoulder (cm)</label>
-              <input id="item-shoulder" type="number" step="0.1" min="0" />
+              <label for="item-shoulder">Garment shoulder (<span class="unit-label">cm</span>)</label>
+              <input id="item-shoulder" type="number" data-measure inputmode="decimal" step="0.1" min="0" />
             </div>
             <div class="field">
-              <label for="item-waist">Garment waist (cm)</label>
-              <input id="item-waist" type="number" step="0.1" min="0" />
+              <label for="item-waist">Garment waist (<span class="unit-label">cm</span>)</label>
+              <input id="item-waist" type="number" data-measure inputmode="decimal" step="0.1" min="0" />
             </div>
             <div class="field">
-              <label for="item-hip">Garment hip (cm)</label>
-              <input id="item-hip" type="number" step="0.1" min="0" />
+              <label for="item-hip">Garment hip (<span class="unit-label">cm</span>)</label>
+              <input id="item-hip" type="number" data-measure inputmode="decimal" step="0.1" min="0" />
             </div>
           </div>
           <p class="field-hint">From the tag or size chart, if you have it, most precise option.</p>
@@ -100,6 +105,7 @@
     </section>
   </main>
 
+  <script type="module" src="js/ui.js"></script>
   <script type="module" src="js/closet-app.js"></script>
 </body>
 </html>

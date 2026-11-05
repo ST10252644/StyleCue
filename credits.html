@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
 <title>StyleCue, Photo credits</title>
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/mobile.css" />
@@ -14,6 +14,7 @@
     <p class="styleguide__sub">Photos in this prototype come from Unsplash and are used under the Unsplash licence. Images marked as illustrations were drawn for this prototype.</p>
     <div id="list"></div>
   </main>
+  <script type="module" src="js/ui.js"></script>
   <script type="module">
     import { renderNav } from "./js/nav.js";
     renderNav("profile");

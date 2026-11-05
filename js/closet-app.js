@@ -1,3 +1,4 @@
+import { cmValue } from "./ui.js";
 import { supabase } from "./supabaseClient.js";
 import { STYLE_TYPES } from "./styleTypes.js";
 import { checkFit } from "./fitCheck.js";
@@ -173,9 +174,9 @@ form.addEventListener("submit", async (e) => {
       // unset here, checkFit() simply skips dimensions it has no data for.
     }
   } else if (fitMode === "exact") {
-    garment_shoulder = parseFloat(document.getElementById("item-shoulder").value) || null;
-    garment_waist = parseFloat(document.getElementById("item-waist").value) || null;
-    garment_hip = parseFloat(document.getElementById("item-hip").value) || null;
+    garment_shoulder = (cmValue(document.getElementById("item-shoulder")) || null);
+    garment_waist = (cmValue(document.getElementById("item-waist")) || null);
+    garment_hip = (cmValue(document.getElementById("item-hip")) || null);
     if (garment_shoulder || garment_waist || garment_hip) fit_source = "exact";
   }
 

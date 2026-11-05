@@ -1,3 +1,4 @@
+import { cmValue } from "./ui.js";
 import { supabase } from "./supabaseClient.js";
 import { classifyBodyShape, BODY_TYPES } from "./bodyShape.js";
 import { STYLE_TYPES } from "./styleTypes.js";
@@ -36,9 +37,9 @@ const sectionDone = document.getElementById("section-done");
 
 document.getElementById("form-measure").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const shoulder = parseFloat(document.getElementById("m-shoulder").value);
-  const waist = parseFloat(document.getElementById("m-waist").value);
-  const hip = parseFloat(document.getElementById("m-hip").value);
+  const shoulder = cmValue(document.getElementById("m-shoulder"));
+  const waist = cmValue(document.getElementById("m-waist"));
+  const hip = cmValue(document.getElementById("m-hip"));
   if (!shoulder || !waist || !hip) return;
 
   const result = classifyBodyShape(shoulder, waist, hip);
