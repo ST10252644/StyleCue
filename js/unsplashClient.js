@@ -20,7 +20,29 @@ function demoPhotos(query, n = 12) {
   return { total: n, results };
 }
 
+let galleryCache;
+async function loadGallery() {
+  if (galleryCache !== undefined) return galleryCache;
+  try {
+    const res = await fetch("images/gallery.json");
+    galleryCache = res.ok ? [].concat(await res.json()) : null;
+  } catch { galleryCache = null; }
+  return galleryCache;
+}
+
+// Prototype photo library: uses the saved women's-style gallery (images/gallery.json) when it exists.
+function fromGallery(gallery, query, perPage) {
+  const words = (query || "").toLowerCase().split(/\s+/).filter((w) => w.length > 2);
+  let hits = gallery.filter((p) => words.some((w) => p.style === w || (p.alt_description || "").toLowerCase().includes(w)));
+  if (!hits.length) hits = gallery;
+  // Mix the styles so one style does not fill the whole screen.
+  hits = hits.slice().sort((a, b) => (a.id > b.id ? 1 : -1));
+  return { total: hits.length, results: hits.slice(0, Math.max(perPage, 60)) };
+}
+
 export async function searchPhotos(query, perPage = 24) {
+  const gallery = await loadGallery();
+  if (gallery && gallery.length) return fromGallery(gallery, query, perPage);
   if (!UNSPLASH_ACCESS_KEY) return demoPhotos(query);
   const res = await fetch(
     `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=${perPage}&orientation=portrait`,

@@ -6,7 +6,7 @@
 <title>StyleCue, Photo credits</title>
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/mobile.css" />
-<style>body { display: block; } .credit { display:grid; grid-template-columns:4rem 1fr; gap:.8rem; padding:.8rem 0; border-top:1px solid var(--line-on-bone); font-size:.85rem; line-height:1.5; } .credit img { width:4rem; height:5rem; object-fit:cover; border-radius:8px; } .credit a { color:var(--ink); }</style>
+<style>body { display: block; } .credit { display:grid; grid-template-columns:4rem 1fr; gap:.8rem; padding:.8rem 0; border-top:1px solid var(--line-on-bone); font-size:.85rem; line-height:1.5; } .credit img { width:4rem; height:5rem; object-fit:cover; border-radius:8px; } .credit--text { grid-template-columns:1fr; } .credit-h { font-family:Fraunces,serif; font-style:italic; margin:1.6rem 0 .4rem; } .credit-group summary { padding:.8rem 0; font-weight:600; cursor:pointer; text-transform:capitalize; border-top:1px solid var(--line-on-bone); } .credit a { color:var(--ink); }</style>
 </head>
 <body>
   <main class="styleguide">
@@ -30,6 +30,17 @@
     } catch {
       list.innerHTML = '<div class="styleguide-nudge">No photos have been added yet. The style images are drawn illustrations.</div>';
     }
+    try {
+      const gres = await fetch("images/gallery.json");
+      if (gres.ok) {
+        const g = [].concat(await gres.json());
+        const by = {};
+        g.forEach((p) => (by[p.style] = by[p.style] || []).push(p));
+        const html = Object.keys(by).sort().map((s) => `<details class="credit-group"><summary>${s} (${by[s].length} photos in the Look Library)</summary>` +
+          by[s].map((p) => `<div class="credit credit--text"><div><a href="${p.links.html}?utm_source=stylecue&utm_medium=referral" target="_blank" rel="noopener">${p.alt_description}</a><br/>Photo by <a href="${p.user.links.html}?utm_source=stylecue&utm_medium=referral" target="_blank" rel="noopener">${p.user.name}</a> (${p.year}) on Unsplash</div></div>`).join("") + "</details>").join("");
+        list.insertAdjacentHTML("beforeend", `<h2 class="credit-h">Look Library photos</h2>${html}`);
+      }
+    } catch {}
   </script>
 </body>
 </html>
