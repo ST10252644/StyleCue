@@ -507,7 +507,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: #8a8371;
   text-align: center;
   padding: 0.4rem;
@@ -546,7 +546,7 @@ body {
 
 .type-card__match-badge {
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   background: var(--lime);
   color: var(--ink);
@@ -996,7 +996,7 @@ body {
 }
 
 .profile-badge__label {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--lime);
   font-weight: 700;
   margin-bottom: 0.3rem;
@@ -1186,7 +1186,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.45rem 0.6rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #6b6455;
   background: #fff;
 }
