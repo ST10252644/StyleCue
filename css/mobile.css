@@ -169,3 +169,13 @@ input, textarea, select { scroll-margin: 30vh 0; }
 .style-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1rem; }
 .style-photos__item { aspect-ratio: 3 / 4; border-radius: 12px; background-size: cover; background-position: center; background-color: #e8e1d0; }
 .style-photos__item--big { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+
+/* ---- Quiz: 2 x 2 photo grid ---- */
+.quiz-options { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.quiz-option { flex-direction: column; align-items: stretch; gap: 0; padding: 0; overflow: hidden; text-align: left; min-height: 44px; }
+.quiz-option__img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #eae4d4; }
+.quiz-option__label { display: block; padding: 0.6rem 0.7rem 0.75rem; font-size: 0.85rem; line-height: 1.35; flex: 1; }
+.quiz-option:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+@media (max-width: 340px) { .quiz-options { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+html { -webkit-text-size-adjust: 100%; }
