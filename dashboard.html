@@ -15,6 +15,16 @@
     <h1 class="dash__greeting" id="greeting">Hey there.</h1>
     <p class="dash__sub" id="sub">Here's where your profile stands.</p>
 
+    <section class="style-hero" id="style-hero" hidden>
+      <div class="style-hero__img" id="style-hero-img" role="img"></div>
+      <div class="style-hero__body">
+        <div class="dash-card__label">YOUR STYLE PROFILE</div>
+        <div class="style-hero__name" id="style-hero-name"></div>
+        <p class="style-hero__tag" id="style-hero-tag"></p>
+        <a href="styleguide.html">Open my style guide →</a>
+      </div>
+    </section>
+
     <div class="dash__grid dash__grid--3">
       <div class="dash-card" id="card-bodyshape">
         <div class="dash-card__label">BODY SHAPE</div>
@@ -116,6 +126,16 @@
       seasonCard.querySelector("a").textContent = "Retake →";
     } else {
       seasonCard.classList.add("dash-card--empty");
+    }
+
+    if (profile?.style_personality) {
+      const st = STYLE_TYPES[profile.style_personality];
+      document.getElementById("style-hero").hidden = false;
+      const hi = document.getElementById("style-hero-img");
+      hi.style.backgroundImage = `url('${st.images.hero}')`;
+      hi.setAttribute("aria-label", `${st.name} style photo`);
+      document.getElementById("style-hero-name").textContent = [st.name, profile?.body_shape ? BODY_TYPES[profile.body_shape].name : ""].filter(Boolean).join(" · ");
+      document.getElementById("style-hero-tag").textContent = st.tagline;
     }
 
     document.getElementById("sub").textContent =

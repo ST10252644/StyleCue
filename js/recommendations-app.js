@@ -74,6 +74,7 @@ if (!bodyType || !style) {
             const ex = explainMatch(item, bodyType, style);
             return `
             <article class="rec-card" data-id="${item.id}">
+              <img class="rec-card__photo" src="${[style.images.hero, style.images.palette, style.images.detail][i % 3]}" alt="${style.name} style inspiration photo" loading="lazy" decoding="async" />
               <div class="rec-card__head">
                 <div class="rec-row__rank">${i + 1}</div>
                 <div class="rec-row__main">
@@ -91,7 +92,7 @@ if (!bodyType || !style) {
             </article>`;
           }).join("")}
         </div>
-        <p class="rec-legend"><span class="chip chip--body">body shape</span> <span class="chip chip--style">style</span> Colours show where each match came from.</p>
+        <p class="rec-legend"><span class="chip chip--body">body shape</span> <span class="chip chip--style">style</span> Colours show where each match came from. Photos are style inspiration for your aesthetic, not product images (<a href="credits.html">photo credits</a>).</p>
       </div>
     `;
   }

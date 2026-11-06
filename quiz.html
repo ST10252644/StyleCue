@@ -30,7 +30,8 @@
         <span id="progress-label">Question 1 of 12</span>
       </div>
 
-      <h2 id="quiz-prompt">-</h2>
+      <button type="button" class="quiz-back" id="quiz-back" hidden>← Back</button>
+      <h2 id="quiz-prompt" tabindex="-1">-</h2>
       <div id="quiz-options" class="quiz-options"></div>
     </section>
 
@@ -76,7 +77,8 @@
         <ul id="result-avoid"></ul>
       </div>
 
-      <button class="btn-primary" id="share-btn" type="button" style="width:auto; margin-top:1.5rem;">Share your style card</button>
+      <button class="btn-primary" id="save-look-btn" type="button" style="width:100%; margin-top:1.5rem;">♡ Save to My Looks</button>
+      <button class="btn-ghost" id="share-btn" type="button" style="width:100%; margin-top:0.75rem;">Share your style card</button>
 
       <p id="tie-note" class="tie-note"></p>
       <p class="result__save-msg" id="save-msg"></p>

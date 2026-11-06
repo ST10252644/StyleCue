@@ -37,6 +37,10 @@ const calcPanel = document.getElementById("calculating-panel");
 const shareBtn = document.getElementById("share-btn");
 const saveMsg = document.getElementById("save-msg");
 
+const backBtn = document.getElementById("quiz-back");
+backBtn.addEventListener("click", () => {
+  if (current > 0) { current--; answers.length = current; renderQuestion(); }
+});
 let current = 0;
 const answers = []; // style key per question
 
@@ -46,6 +50,10 @@ function renderQuestion() {
   progressLabel.textContent = `Question ${current + 1} of ${QUIZ_QUESTIONS.length}`;
   progressFill.style.width = `${((current + 1) / QUIZ_QUESTIONS.length) * 100}%`;
 
+  backBtn.hidden = current === 0;
+  quizPanel.classList.remove("q-fade");
+  void quizPanel.offsetWidth;
+  quizPanel.classList.add("q-fade");
   optionsEl.innerHTML = "";
   q.options.forEach((opt) => {
     const styleData = STYLE_TYPES[opt.style];
@@ -116,6 +124,22 @@ async function finishQuiz() {
   fillList(resultAvoid, winner.avoid);
 
   drawRadar(tally);
+
+  const saveBtn = document.getElementById("save-look-btn");
+  saveBtn.onclick = async () => {
+    saveBtn.disabled = true;
+    const { error: favErr } = await supabase.from("favorites").insert({
+      user_id: userId,
+      photo_id: `style-${winnerKey}`,
+      image_url: winner.images.hero,
+      photographer: "Unsplash photographer (see Photo credits)",
+      photographer_url: "credits.html",
+      query: `${winner.name} style`,
+    });
+    saveBtn.textContent = favErr ? "Couldn't save, try again" : "♥ Saved to My Looks";
+    saveBtn.disabled = !favErr;
+    showToast(favErr ? "Couldn't save" : "Saved to My Looks", favErr ? "error" : "success");
+  };
 
   shareBtn.onclick = async () => {
     shareBtn.disabled = true;
