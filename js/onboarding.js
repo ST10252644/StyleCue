@@ -76,7 +76,7 @@ function renderStyleQuestion() {
     btn.type = "button";
     btn.className = "quiz-option";
     btn.innerHTML = `
-      <span class="quiz-option__thumb" style="background-image:url('${styleData.images.hero}')"></span>
+      <img class="quiz-option__img" src="${styleData.images.hero}" alt="${styleData.name} style outfit on a woman" loading="lazy" decoding="async" />
       <span class="quiz-option__label">${opt.label}</span>
     `;
     btn.addEventListener("click", () => {
@@ -125,7 +125,9 @@ function renderSeasonQuestion() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "quiz-option";
-    btn.innerHTML = `<span class="quiz-option__label">${opt.label}</span>`;
+    btn.innerHTML = `
+      <img class="quiz-option__img" src="${SEASON_TYPES[opt.season].images.hero}" alt="${SEASON_TYPES[opt.season].name} colouring example" loading="lazy" decoding="async" />
+      <span class="quiz-option__label">${opt.label}</span>`;
     btn.addEventListener("click", () => {
       seasonAnswers[seasonCurrent] = opt.season;
       seasonCurrent++;
