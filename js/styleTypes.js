@@ -375,3 +375,10 @@ export const STYLE_TYPES = {
     },
   },
 };
+
+// Real photographs available for each style (the palette image is an illustration for some styles).
+const PLACEHOLDER_PALETTE = ["vintage", "streetwear", "parisian", "coastal", "sporty"];
+export function styleOptionImage(styleKey, n) {
+  const kinds = PLACEHOLDER_PALETTE.includes(styleKey) ? ["hero", "detail"] : ["hero", "palette", "detail"];
+  return `images/styles/${styleKey}/${kinds[n % kinds.length]}.jpg`;
+}

@@ -1,7 +1,7 @@
 import { cmValue } from "./ui.js";
 import { supabase } from "./supabaseClient.js";
 import { classifyBodyShape, BODY_TYPES } from "./bodyShape.js";
-import { STYLE_TYPES } from "./styleTypes.js";
+import { STYLE_TYPES, styleOptionImage } from "./styleTypes.js";
 import { QUIZ_QUESTIONS } from "./quizQuestions.js";
 import { SEASON_TYPES, SEASON_QUESTIONS, tallySeason } from "./seasonTypes.js";
 import { showToast } from "./toast.js";
@@ -71,13 +71,13 @@ function renderStyleQuestion() {
 
   const optionsEl = document.getElementById("style-options");
   optionsEl.innerHTML = "";
-  q.options.forEach((opt) => {
+  q.options.forEach((opt, optIdx) => {
     const styleData = STYLE_TYPES[opt.style];
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "quiz-option";
     btn.innerHTML = `
-      <img class="quiz-option__img" src="${styleData.images.hero}" alt="${styleData.name} style outfit on a woman" loading="lazy" decoding="async" />
+      <img class="quiz-option__img" src="${styleOptionImage(opt.style, styleCurrent + optIdx)}" alt="${styleData.name} style example on a woman" decoding="async" />
       <span class="quiz-option__label">${opt.label}</span>
     `;
     btn.addEventListener("click", () => {
