@@ -7,7 +7,7 @@
 }
 
 html { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }
-body { overscroll-behavior-y: none; -webkit-user-select: none; user-select: none; }
+body { -webkit-user-select: none; user-select: none; }
 input, textarea, select { -webkit-user-select: text; user-select: text; }
 a, button { touch-action: manipulation; }
 
@@ -135,7 +135,7 @@ body > main, .page__body { padding-bottom: calc(var(--tab-h) + var(--safe-bottom
 .calc-panel .btn-primary { width: 100%; }
 
 /* Fixes after phone testing */
-html, body { overflow-x: hidden; max-width: 100%; }
+html, body { max-width: 100%; }
 #add-item-form .measure-grid { grid-template-columns: 1fr; }
 .library-search { gap: 0.5rem; }
 .library-search input { min-width: 0; }
@@ -217,9 +217,8 @@ input, select, textarea { font-size: 16px; } /* stops phones zooming in on focus
 .credits a, .credit-group a { padding: .35rem 0; display: inline-block; }
 
 /* ---- Always scrollable, also with the keyboard open ---- */
-html, body { overflow-x: clip; overflow-y: auto; height: auto; }
-html { overscroll-behavior: auto; -webkit-overflow-scrolling: touch; }
-body { overscroll-behavior-y: auto; min-height: calc(100dvh + 2px); }
+html, body { height: auto; overflow-y: visible; }
+body { overflow-x: clip; }
 main, .page__body { padding-bottom: calc(var(--tab-h, 64px) + env(safe-area-inset-bottom) + 12rem); }
 body.kb-open main, body.kb-open .page__body { padding-bottom: 60vh; }
 input, textarea, select { scroll-margin-block: 30vh; }
