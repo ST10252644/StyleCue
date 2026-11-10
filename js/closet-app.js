@@ -100,7 +100,7 @@ function fitBadge(item) {
       <span style="display:inline-block; font-size:0.72rem; font-weight:700; padding:0.15rem 0.6rem; border-radius:999px; background:${bg}; color:${colorMap[fit.overall]};">
         ${fit.overall}
       </span>
-      <span style="display:block; font-size:0.75rem; color:#8a8371; margin-top:0.25rem;">${reasonText}${estimateCaveat}</span>
+      <span style="display:block; font-size:0.75rem; color:#6b6455; margin-top:0.25rem;">${reasonText}${estimateCaveat}</span>
     </div>
   `;
 }
@@ -121,14 +121,14 @@ function renderItems() {
       if (catItems.length === 0) return "";
       return `
         <div style="margin-bottom:1.25rem;">
-          <div style="font-size:0.75rem; font-weight:700; color:#8a8371; text-transform:capitalize; margin-bottom:0.5rem;">${cat}</div>
+          <div style="font-size:0.75rem; font-weight:700; color:#6b6455; text-transform:capitalize; margin-bottom:0.5rem;">${cat}</div>
           ${catItems
             .map(
               (i) => `
             <div style="padding:0.6rem 0; border-bottom:1px solid var(--line-on-bone);">
               <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                <span style="font-size:0.9rem;">${i.name}${i.color ? `, <span style="color:#8a8371;">${i.color}</span>` : ""}</span>
-                <button data-id="${i.id}" class="remove-item" style="background:none; border:none; color:#8a8371; cursor:pointer; font-size:1rem; flex-shrink:0;">×</button>
+                <span style="font-size:0.9rem;">${i.name}${i.color ? `, <span style="color:#6b6455;">${i.color}</span>` : ""}</span>
+                <button data-id="${i.id}" class="remove-item" style="background:none; border:none; color:#6b6455; cursor:pointer; font-size:1rem; flex-shrink:0;">×</button>
               </div>
               ${fitBadge(i)}
             </div>

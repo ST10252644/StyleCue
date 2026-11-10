@@ -6,6 +6,7 @@ import { combineAttributes, computeMatches, explainMatch } from "./matchEngine.j
 import { add, has } from "./pause.js";
 import { showToast } from "./toast.js";
 import { renderNav } from "./nav.js";
+import { logEvent, mountFeedback } from "./usage.js";
 
 renderNav("recommendations");
 
@@ -98,6 +99,11 @@ if (!bodyType || !style) {
   }
 
   contentEl.innerHTML = html;
+  logEvent(userId, "recs_viewed", `${bodyType.name} + ${style.name}`);
+  const fbEl = document.createElement("section");
+  fbEl.className = "styleguide-section fb";
+  contentEl.appendChild(fbEl);
+  mountFeedback(fbEl, userId, "recommendations");
 }
 
 contentEl.addEventListener("click", (e) => {
@@ -108,5 +114,6 @@ contentEl.addEventListener("click", (e) => {
   add(userId, { id: item.id, name: item.name, category: item.category, why: explainMatch(item, bodyType, style).text });
   btn.disabled = true;
   btn.textContent = "Saved to Think it over";
+  logEvent(userId, "think_saved", item.name);
   showToast("Saved. No rush to decide.");
 });

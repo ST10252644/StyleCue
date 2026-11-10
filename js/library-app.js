@@ -3,6 +3,7 @@ import { searchPhotos } from "./unsplashClient.js";
 import { STYLE_TYPES } from "./styleTypes.js";
 import { BODY_TYPES } from "./bodyShape.js";
 import { renderNav } from "./nav.js";
+import { logEvent } from "./usage.js";
 
 renderNav("library");
 
@@ -48,6 +49,7 @@ async function toggleSave(photo, btn) {
       photographer_url: photo.user.links.html,
       query: input.value || "",
     });
+    logEvent(userId, "look_saved", photo.id);
     savedIds.add(photo.id);
     btn.classList.add("is-saved");
     btn.textContent = "♥";

@@ -5,6 +5,7 @@ import { STYLE_TYPES } from "./styleTypes.js";
 import { QUIZ_QUESTIONS } from "./quizQuestions.js";
 import { SEASON_TYPES, SEASON_QUESTIONS, tallySeason } from "./seasonTypes.js";
 import { showToast } from "./toast.js";
+import { logEvent } from "./usage.js";
 
 const { data: sessionData } = await supabase.auth.getSession();
 if (!sessionData.session) {
@@ -147,6 +148,7 @@ async function finishSeason() {
   results.season = result.key;
   await supabase.from("profiles").upsert({ id: userId, season: result.key }, { onConflict: "id" });
 
+  logEvent(userId, "profile_completed", `${results.bodyShape}/${results.style}/${results.season}`);
   sectionSeason.style.display = "none";
   sectionDone.style.display = "block";
   sectionDone.classList.add("is-visible", "reveal-in");

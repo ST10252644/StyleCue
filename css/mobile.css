@@ -224,3 +224,23 @@ body.kb-open main, body.kb-open .page__body { padding-bottom: 60vh; }
 input, textarea, select { scroll-margin-block: 30vh; }
 .quiz-option__img { aspect-ratio: 4 / 5; }
 body { min-height: calc(100dvh + 6rem); padding-bottom: calc(6rem + env(safe-area-inset-bottom)); }
+
+/* ---- Feedback and activity ---- */
+.fb { background:#fff; border:1.5px solid var(--line-on-bone); border-radius:16px; padding:1rem; }
+.fb__lede { font-size:.9rem; color:var(--ink-dim,#5b5648); margin:.25rem 0 1rem; }
+.fb__group { border:0; padding:0; margin:0 0 1rem; }
+.fb__group legend { font-weight:600; font-size:.95rem; margin-bottom:.4rem; padding:0; }
+.fb__stars { display:flex; gap:.35rem; }
+.fb__star { width:48px; height:48px; border-radius:12px; border:1.5px solid var(--line-on-bone); background:#fff; font-size:1.5rem; color:#c9c2ae; cursor:pointer; }
+.fb__star.is-on { background:var(--lime); color:var(--ink); border-color:var(--ink); }
+.fb__label { display:block; font-weight:600; font-size:.9rem; margin:.5rem 0 .3rem; }
+.fb textarea { width:100%; border:1.5px solid var(--line-on-bone); border-radius:12px; padding:.7rem; font-family:inherit; margin-bottom:.75rem; }
+.fb__thanks { margin-top:.6rem; font-size:.9rem; color:#4d5900; }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+.stat { background:#fff; border:1.5px solid var(--line-on-bone); border-radius:14px; padding:.8rem; }
+.stat__v { font-family:'Fraunces',serif; font-size:1.5rem; }
+.stat__l { font-size:.8rem; color:#5b5648; }
+.fb-item { border-top:1px solid var(--line-on-bone); padding:.7rem 0; font-size:.9rem; }
+.fb-item p { margin:.3rem 0; }
+.dash-card--empty .dash-card__hint { color: #6b6455; }
+.style-hero__body .dash-card__label { color: #6b6455; }
