@@ -1,6 +1,8 @@
 import { supabase } from "./supabaseClient.js";
-import { STYLE_TYPES, styleOptionImage } from "./styleTypes.js";
+import { STYLE_TYPES } from "./styleTypes.js";
+import { quizStyleImg, PHOTOS } from "./photoIndex.js";
 import { QUIZ_QUESTIONS } from "./quizQuestions.js";
+import { photoStrip } from "./photoStrip.js";
 import { renderNav } from "./nav.js";
 import { showToast } from "./toast.js";
 import { generateStyleCard, shareOrDownloadCard } from "./shareCard.js";
@@ -61,7 +63,7 @@ function renderQuestion() {
     btn.type = "button";
     btn.className = "quiz-option";
     btn.innerHTML = `
-      <img class="quiz-option__img" src="${styleOptionImage(opt.style, current + optIdx)}" alt="${styleData.name} style example on a woman" decoding="async" />
+      <img class="quiz-option__img" src="${quizStyleImg(current, optIdx)}" alt="${opt.label}" decoding="async" />
       <span class="quiz-option__label">${opt.label}</span>
     `;
     btn.addEventListener("click", () => selectAnswer(opt.style));
@@ -119,6 +121,8 @@ async function finishQuiz() {
     <div class="result__gallery-item" style="background-image:url('${winner.images.detail}')"></div>
   `;
 
+  document.getElementById("style-photos-more")?.remove();
+  resultGallery.insertAdjacentHTML("afterend", `<div id="style-photos-more">${photoStrip(PHOTOS.styles[winnerKey] || [], { title: "Build the look", note: "Pieces, details and moods that make up this style." })}</div>`);
   fillList(resultKeyPieces, winner.keyPieces);
   fillList(resultTips, winner.stylingTips);
   fillList(resultAvoid, winner.avoid);

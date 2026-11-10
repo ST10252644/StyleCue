@@ -42,6 +42,7 @@ if (!bodyType || !style) {
   contentEl.innerHTML = `
     <div class="styleguide-section">
       <div class="styleguide-nudge">
+        <img class="empty-photo" src="images/pages/empty_state_4.jpg" alt="An empty wardrobe" loading="lazy" decoding="async" />
         Complete your <a href="bodytype.html">body shape</a> and <a href="quiz.html">style quiz</a> to see your matched recommendations.
       </div>
     </div>

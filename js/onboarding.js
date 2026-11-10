@@ -1,11 +1,14 @@
 import { cmValue } from "./ui.js";
 import { supabase } from "./supabaseClient.js";
 import { classifyBodyShape, BODY_TYPES } from "./bodyShape.js";
-import { STYLE_TYPES, styleOptionImage } from "./styleTypes.js";
+import { STYLE_TYPES } from "./styleTypes.js";
+import { quizStyleImg, quizSeasonImg } from "./photoIndex.js";
 import { QUIZ_QUESTIONS } from "./quizQuestions.js";
 import { SEASON_TYPES, SEASON_QUESTIONS, tallySeason } from "./seasonTypes.js";
 import { showToast } from "./toast.js";
 import { logEvent } from "./usage.js";
+import { PHOTOS } from "./photoIndex.js";
+import { banner } from "./photoStrip.js";
 
 const { data: sessionData } = await supabase.auth.getSession();
 if (!sessionData.session) {
@@ -35,6 +38,11 @@ const sectionBody = document.getElementById("section-bodyshape");
 const sectionStyle = document.getElementById("section-style");
 const sectionSeason = document.getElementById("section-season");
 const sectionDone = document.getElementById("section-done");
+// Photographs for each step (see the credits page)
+sectionBody.insertAdjacentHTML("afterbegin", banner(PHOTOS.pages.onboarding_1_measure, "A woman with a measuring tape"));
+sectionStyle.insertAdjacentHTML("afterbegin", banner(PHOTOS.pages.onboarding_2_style, "A woman choosing an outfit"));
+sectionSeason.insertAdjacentHTML("afterbegin", banner(PHOTOS.pages.onboarding_3_colours, "Colour swatches"));
+sectionDone.insertAdjacentHTML("afterbegin", banner(PHOTOS.pages.profile_complete, "A confident woman in a stylish outfit"));
 
 document.getElementById("form-measure").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -77,7 +85,7 @@ function renderStyleQuestion() {
     btn.type = "button";
     btn.className = "quiz-option";
     btn.innerHTML = `
-      <img class="quiz-option__img" src="${styleOptionImage(opt.style, styleCurrent + optIdx)}" alt="${styleData.name} style example on a woman" decoding="async" />
+      <img class="quiz-option__img" src="${quizStyleImg(styleCurrent, optIdx)}" alt="${opt.label}" decoding="async" />
       <span class="quiz-option__label">${opt.label}</span>
     `;
     btn.addEventListener("click", () => {
@@ -122,12 +130,12 @@ function renderSeasonQuestion() {
 
   const optionsEl = document.getElementById("season-options");
   optionsEl.innerHTML = "";
-  q.options.forEach((opt) => {
+  q.options.forEach((opt, optIdx) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "quiz-option";
     btn.innerHTML = `
-      <img class="quiz-option__img" src="${SEASON_TYPES[opt.season].images.hero}" alt="${SEASON_TYPES[opt.season].name} colouring example" loading="lazy" decoding="async" />
+      <img class="quiz-option__img" src="${quizSeasonImg(seasonCurrent, optIdx)}" alt="${opt.label}" decoding="async" />
       <span class="quiz-option__label">${opt.label}</span>`;
     btn.addEventListener("click", () => {
       seasonAnswers[seasonCurrent] = opt.season;

@@ -4,6 +4,8 @@ import { STYLE_TYPES } from "./styleTypes.js";
 import { BODY_TYPES } from "./bodyShape.js";
 import { renderNav } from "./nav.js";
 import { showToast } from "./toast.js";
+import { PHOTOS } from "./photoIndex.js";
+import { localPhotoObjects } from "./localPhotos.js";
 
 renderNav("occasions");
 
@@ -14,13 +16,20 @@ if (!sessionData.session) {
 const userId = sessionData.session.user.id;
 
 const OCCASIONS = [
-  { key: "work", label: "Work", search: "work outfit professional" },
-  { key: "date", label: "Date night", search: "date night outfit" },
-  { key: "wedding", label: "Wedding guest", search: "wedding guest outfit" },
-  { key: "interview", label: "Interview", search: "job interview outfit professional" },
-  { key: "weekend", label: "Weekend casual", search: "weekend casual outfit" },
-  { key: "night-out", label: "Night out", search: "night out outfit" },
-  { key: "vacation", label: "Vacation", search: "vacation travel outfit" },
+  { key: "universityday", label: "University day", search: "university campus outfit" },
+  { key: "workfromhome", label: "Work from home", search: "work from home outfit" },
+  { key: "jobinterview", label: "Job interview", search: "job interview outfit professional" },
+  { key: "datenight", label: "Date night", search: "date night outfit" },
+  { key: "casualbrunch", label: "Casual brunch", search: "brunch outfit" },
+  { key: "weddingguest", label: "Wedding guest", search: "wedding guest outfit" },
+  { key: "formalevening", label: "Formal evening", search: "formal evening dress" },
+  { key: "graduation", label: "Graduation", search: "graduation outfit" },
+  { key: "church", label: "Church", search: "church outfit women modest" },
+  { key: "familydinner", label: "Family dinner", search: "family dinner outfit" },
+  { key: "festival", label: "Festival", search: "festival outfit" },
+  { key: "roadtrip", label: "Road trip", search: "road trip travel outfit" },
+  { key: "beachholiday", label: "Beach holiday", search: "beach holiday outfit" },
+  { key: "gym", label: "Gym", search: "gym workout outfit women" },
 ];
 
 const tagsEl = document.getElementById("occasion-tags");
@@ -63,13 +72,14 @@ function renderGrid(photos, term) {
     const card = document.createElement("div");
     card.className = "library-card";
     const isSaved = savedIds.has(photo.id);
-    const photographerLink = `${photo.user.links.html}?utm_source=stylecue&utm_medium=referral`;
+    const isPin = photo.source === "pinterest";
+    const photographerLink = isPin ? photo.user.links.html : `${photo.user.links.html}?utm_source=stylecue&utm_medium=referral`;
     card.innerHTML = `
       <img src="${photo.urls.small}" alt="${photo.alt_description || "Outfit inspiration"}" loading="lazy" />
       <button class="library-card__save${isSaved ? " is-saved" : ""}" type="button">${isSaved ? "♥" : "♡"}</button>
       <div class="library-credit">
         <a href="${photographerLink}" target="_blank" rel="noopener">${photo.user.name}</a>
-        <a href="https://unsplash.com/?utm_source=stylecue&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a>
+        <a href="${isPin ? photo.user.links.html : "https://unsplash.com/?utm_source=stylecue&utm_medium=referral"}" target="_blank" rel="noopener">${isPin ? "Pinterest" : "Unsplash"}</a>
       </div>
     `;
     card.querySelector(".library-card__save").addEventListener("click", async (e) => {
@@ -117,14 +127,17 @@ async function selectOccasion(occasion) {
   renderShimmer();
 
   try {
-    const data = await searchPhotos(term);
-    if (!data.results || data.results.length === 0) {
+    const local = await localPhotoObjects(PHOTOS.occasions[occasion.key], `occ-${occasion.key}`, occasion.label);
+    let more = [];
+    try { more = (await searchPhotos(term)).results || []; } catch { /* offline: only the saved photos */ }
+    const all = [...local, ...more];
+    if (all.length === 0) {
       resultsEl.innerHTML = `<div class="library-empty">No results, try another occasion.</div>`;
       statusEl.textContent = "";
       return;
     }
-    statusEl.textContent = `${data.results.length} looks for ${occasion.label.toLowerCase()}`;
-    renderGrid(data.results, term);
+    statusEl.textContent = `${all.length} looks for ${occasion.label.toLowerCase()}`;
+    renderGrid(all, term);
   } catch (err) {
     console.error(err);
     statusEl.textContent = "Look photos could not load. Check your connection and try again.";

@@ -2,6 +2,8 @@ import { supabase } from "./supabaseClient.js";
 import { STYLE_TYPES } from "./styleTypes.js";
 import { BODY_TYPES } from "./bodyShape.js";
 import { SEASON_TYPES } from "./seasonTypes.js";
+import { PHOTOS } from "./photoIndex.js";
+import { photoStrip } from "./photoStrip.js";
 import { renderNav } from "./nav.js";
 
 renderNav("styleguide");
@@ -49,6 +51,7 @@ if (season) {
       <div class="swatch-row" style="margin-top:0.75rem;">
         ${season.bestColors.map((c) => `<span class="swatch-chip" style="background:rgba(21,19,14,0.06); color:var(--ink); border-color:var(--line-on-bone);">${c}</span>`).join("")}
       </div>
+      ${photoStrip(PHOTOS.seasons[profile.season] || [], { title: `${season.name} in real life`, note: "Outfit, makeup, flat-lay, mood, your best colours, colours to avoid, hair, nails and eyewear." })}
     </div>
   `;
 } else {
@@ -60,6 +63,7 @@ if (bodyType) {
     <div class="styleguide-section">
       <h2>Your silhouette, ${bodyType.name}</h2>
       <p>${bodyType.desc}</p>
+      ${photoStrip(PHOTOS.body[profile.body_shape] || [], { title: "Outfits for your shape" })}
     </div>
   `;
 } else {
@@ -77,6 +81,7 @@ if (style) {
         <div class="style-photos__item" style="background-image:url('${style.images.palette}')"></div>
         <div class="style-photos__item" style="background-image:url('${style.images.detail}')"></div>
       </div>
+      ${photoStrip(PHOTOS.styles[profile.style_personality] || [], { title: "Build the look", note: "Pieces, details and moods of your style." })}
       <p class="field-hint"><a href="credits.html">Photo credits</a></p>
     </div>
   `;

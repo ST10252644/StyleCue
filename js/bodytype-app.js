@@ -2,6 +2,8 @@ import { supabase } from "./supabaseClient.js";
 import { classifyBodyShape, BODY_TYPES } from "./bodyShape.js";
 import { renderNav } from "./nav.js";
 import { showToast } from "./toast.js";
+import { PHOTOS } from "./photoIndex.js";
+import { photoStrip } from "./photoStrip.js";
 
 renderNav("bodytype");
 
@@ -23,9 +25,7 @@ function renderTypeCards(matchedKey = null) {
     const card = document.createElement("div");
     card.className = "type-card" + (key === matchedKey ? " is-match" : "");
     card.innerHTML = `
-      <div class="type-card__img">
-        Add your<br />${type.name}<br />image here
-      </div>
+      <div class="type-card__img"><img src="${(PHOTOS.body[key] || [{}])[0].src}" alt="${type.name} body shape outfit example" loading="lazy" decoding="async" /></div>
       <div>
         <div class="type-card__name">
           ${type.name}
@@ -63,6 +63,8 @@ form.addEventListener("submit", async (e) => {
   resultShape.textContent = result.name;
   resultReason.textContent = result.reason;
   resultDesc.textContent = result.desc;
+  document.getElementById("body-photos")?.remove();
+  resultDesc.insertAdjacentHTML("afterend", `<div id="body-photos">${photoStrip(PHOTOS.body[result.key] || [], { title: `Outfits for the ${result.name} shape`, note: "Two outfits, a top and a bottom that suit this shape." })}</div>`);
   resultEl.classList.add("is-visible", "reveal-in");
   resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
 

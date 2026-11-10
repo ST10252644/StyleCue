@@ -80,16 +80,6 @@
   "accessed": "5 November 2026"
  },
  {
-  "path": "images/seasons/summer/hero.jpg",
-  "photographer": "Jotav Visual Culture",
-  "photographerUrl": "https://unsplash.com/@jrlemus?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/two-women-in-floral-outfits-with-bubbles-MBECmgUZHUA?utm_source=stylecue&utm_medium=referral",
-  "title": "Two women in floral outfits with bubbles",
-  "year": 2026,
-  "query": "woman summer fashion bright colours",
-  "accessed": "5 November 2026"
- },
- {
   "path": "images/seasons/winter/hero.jpg",
   "photographer": "Vladimir Yelizarov",
   "photographerUrl": "https://unsplash.com/@yelizarov?utm_source=stylecue&utm_medium=referral",
@@ -107,26 +97,6 @@
   "title": "Jeweled bracelet displayed on a wooden branch",
   "year": 2025,
   "query": "artsy handmade jewelry women",
-  "accessed": "5 November 2026"
- },
- {
-  "path": "images/styles/artsy/hero.jpg",
-  "photographer": "Charlota Blunarova",
-  "photographerUrl": "https://unsplash.com/@charlotablunarova?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/fashion-illustration-sketches-on-paper-r5xHI_H44aM?utm_source=stylecue&utm_medium=referral",
-  "title": "Fashion illustration sketches on paper",
-  "year": 2019,
-  "query": "woman eclectic artsy outfit print",
-  "accessed": "5 November 2026"
- },
- {
-  "path": "images/styles/artsy/palette.jpg",
-  "photographer": "Junko Nakase",
-  "photographerUrl": "https://unsplash.com/@pao_note?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/womens-assorted-clothes-Q-72wa9-7Dg?utm_source=stylecue&utm_medium=referral",
-  "title": "Womens assorted clothes",
-  "year": 2018,
-  "query": "women artsy color block fashion flatlay",
   "accessed": "5 November 2026"
  },
  {
@@ -190,16 +160,6 @@
   "accessed": "5 November 2026"
  },
  {
-  "path": "images/styles/coastal/detail.jpg",
-  "photographer": "IMANA",
-  "photographerUrl": "https://unsplash.com/@imanaindia?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/woman-in-patterned-outfit-sitting-on-wooden-stool-Vk-FpoBT6uM?utm_source=stylecue&utm_medium=referral",
-  "title": "Woman in patterned outfit sitting on wooden stool",
-  "year": 2025,
-  "query": "women straw hat sandals resort",
-  "accessed": "5 November 2026"
- },
- {
   "path": "images/styles/coastal/hero.jpg",
   "photographer": "Margo Evardson",
   "photographerUrl": "https://unsplash.com/@stadinstudio?utm_source=stylecue&utm_medium=referral",
@@ -217,26 +177,6 @@
   "title": "A woman in a hat sitting on a blanket with a cup of tea",
   "year": 2022,
   "query": "women lace floral cottagecore accessories",
-  "accessed": "5 November 2026"
- },
- {
-  "path": "images/styles/cottagecore/hero.jpg",
-  "photographer": "Megan Ruth",
-  "photographerUrl": "https://unsplash.com/@meganruthphoto?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/two-women-in-white-dresses-standing-next-to-each-other-0ul16kAUx7I?utm_source=stylecue&utm_medium=referral",
-  "title": "Two women in white dresses standing next to each other",
-  "year": 2023,
-  "query": "woman cottagecore floral dress",
-  "accessed": "5 November 2026"
- },
- {
-  "path": "images/styles/cottagecore/palette.jpg",
-  "photographer": "Kailun Zhang",
-  "photographerUrl": "https://unsplash.com/@kailun2019?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/young-woman-looking-out-a-green-window-framed-by-leaves-rLHtu9BugOc?utm_source=stylecue&utm_medium=referral",
-  "title": "Young woman looking out a green window framed by leaves",
-  "year": 2026,
-  "query": "women cottagecore soft green flatlay",
   "accessed": "5 November 2026"
  },
  {
@@ -290,16 +230,6 @@
   "accessed": "5 November 2026"
  },
  {
-  "path": "images/styles/glam/palette.jpg",
-  "photographer": "Mattia Occhi",
-  "photographerUrl": "https://unsplash.com/@redzzz97?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/a-pair-of-gold-shoes-in-a-red-box-VEq1k9rArI0?utm_source=stylecue&utm_medium=referral",
-  "title": "A pair of gold shoes in a red box",
-  "year": 2023,
-  "query": "women glam gold metallic flatlay",
-  "accessed": "5 November 2026"
- },
- {
   "path": "images/styles/grunge/detail.jpg",
   "photographer": "omid bonyadian",
   "photographerUrl": "https://unsplash.com/@omidbonyadian_?utm_source=stylecue&utm_medium=referral",
@@ -317,16 +247,6 @@
   "title": "A pair of legs in jeans",
   "year": 2022,
   "query": "woman grunge flannel ripped jeans outfit",
-  "accessed": "5 November 2026"
- },
- {
-  "path": "images/styles/grunge/palette.jpg",
-  "photographer": "Zoe",
-  "photographerUrl": "https://unsplash.com/@_imd?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/brown-leather-shoes-beside-brown-leather-belt-NKjIT7u5nXE?utm_source=stylecue&utm_medium=referral",
-  "title": "Brown leather shoes beside brown leather belt",
-  "year": 2021,
-  "query": "women grunge plaid wardrobe flatlay",
   "accessed": "5 November 2026"
  },
  {
@@ -390,16 +310,6 @@
   "accessed": "5 November 2026"
  },
  {
-  "path": "images/styles/preppy/palette.jpg",
-  "photographer": "Akshar Dave",
-  "photographerUrl": "https://unsplash.com/@akshar_dave?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/blue-and-white-stripe-textile-vAj_BQi_hF4?utm_source=stylecue&utm_medium=referral",
-  "title": "Blue and white stripe textile",
-  "year": 2020,
-  "query": "women preppy navy plaid flatlay",
-  "accessed": "5 November 2026"
- },
- {
   "path": "images/styles/punk/detail.jpg",
   "photographer": "sour moha",
   "photographerUrl": "https://unsplash.com/@sour_moha?utm_source=stylecue&utm_medium=referral",
@@ -450,16 +360,6 @@
   "accessed": "5 November 2026"
  },
  {
-  "path": "images/styles/romantic/palette.jpg",
-  "photographer": "Genesis Warner",
-  "photographerUrl": "https://unsplash.com/@genesisswarner?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/black-pen-on-white-paper-kNuSOBHBtmA?utm_source=stylecue&utm_medium=referral",
-  "title": "Black pen on white paper",
-  "year": 2020,
-  "query": "romantic blush pink women fashion flatlay",
-  "accessed": "5 November 2026"
- },
- {
   "path": "images/styles/sporty/detail.jpg",
   "photographer": "Tanaphong Toochinda",
   "photographerUrl": "https://unsplash.com/@goshdanyou?utm_source=stylecue&utm_medium=referral",
@@ -507,16 +407,6 @@
   "title": "Woman wearing white framed edgy sunglasses",
   "year": 2019,
   "query": "vintage cat eye sunglasses women accessories",
-  "accessed": "5 November 2026"
- },
- {
-  "path": "images/styles/vintage/hero.jpg",
-  "photographer": "Vino Tri Mulia",
-  "photographerUrl": "https://unsplash.com/@vinotm?utm_source=stylecue&utm_medium=referral",
-  "photoUrl": "https://unsplash.com/photos/woman-in-black-dress-and-black-skirt-standing-on-gray-asphalt-road-during-daytime-bZDTVuDH38M?utm_source=stylecue&utm_medium=referral",
-  "title": "Woman in black dress and black skirt standing on gray asphalt road during daytime",
-  "year": 2021,
-  "query": "woman 70s vintage retro outfit",
   "accessed": "5 November 2026"
  }
 ]

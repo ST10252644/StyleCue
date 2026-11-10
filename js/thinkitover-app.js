@@ -17,7 +17,7 @@ function ago(ts) {
 function render() {
   const list = getList(uid);
   if (!list.length) {
-    el.innerHTML = `<div class="styleguide-nudge">Nothing here yet. On <a href="recommendations.html">Picks</a>, tap “Think it over” on anything you like.</div>`;
+    el.innerHTML = `<div class="styleguide-nudge"><img class="empty-photo" src="images/pages/empty_state_3.jpg" alt="An empty shopping bag" loading="lazy" decoding="async" /><br>Nothing here yet. On <a href="recommendations.html">Picks</a>, tap “Think it over” on anything you like.</div>`;
     return;
   }
   el.innerHTML = list.map((i) => `

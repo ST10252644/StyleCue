@@ -4,6 +4,8 @@ import { STYLE_TYPES } from "./styleTypes.js";
 import { BODY_TYPES } from "./bodyShape.js";
 import { renderNav } from "./nav.js";
 import { logEvent } from "./usage.js";
+import { PHOTOS } from "./photoIndex.js";
+import { localPhotoObjects } from "./localPhotos.js";
 
 renderNav("library");
 
@@ -63,15 +65,16 @@ function renderGrid(photos) {
     card.className = "library-card";
 
     const isSaved = savedIds.has(photo.id);
-    const photographerLink = `${photo.user.links.html}?utm_source=stylecue&utm_medium=referral`;
-    const unsplashLink = `https://unsplash.com/?utm_source=stylecue&utm_medium=referral`;
+    const isPin = photo.source === "pinterest";
+    const photographerLink = isPin ? photo.user.links.html : `${photo.user.links.html}?utm_source=stylecue&utm_medium=referral`;
+    const unsplashLink = isPin ? photo.user.links.html : `https://unsplash.com/?utm_source=stylecue&utm_medium=referral`;
 
     card.innerHTML = `
       <img src="${photo.urls.small}" alt="${photo.alt_description || "Style inspiration photo"}" loading="lazy" />
       <button class="library-card__save${isSaved ? " is-saved" : ""}" type="button">${isSaved ? "♥" : "♡"}</button>
       <div class="library-credit">
         <a href="${photographerLink}" target="_blank" rel="noopener">${photo.user.name}</a>
-        <a href="${unsplashLink}" target="_blank" rel="noopener">Unsplash</a>
+        <a href="${unsplashLink}" target="_blank" rel="noopener">${isPin ? "Pinterest" : "Unsplash"}</a>
       </div>
     `;
 
@@ -104,6 +107,28 @@ async function runSearch(term) {
   }
 }
 
+const TRENDS = [
+  { key: "oldmoney", label: "Old money", term: "old money outfit woman" },
+  { key: "cleangirl", label: "Clean girl", term: "clean girl aesthetic outfit" },
+  { key: "coquette", label: "Coquette", term: "coquette style outfit" },
+  { key: "darkacademia", label: "Dark academia", term: "dark academia outfit woman" },
+  { key: "y2k", label: "Y2K", term: "y2k outfit woman" },
+  { key: "gorpcore", label: "Gorpcore", term: "gorpcore outfit woman" },
+  { key: "cowgirl", label: "Cowgirl", term: "cowgirl outfit woman" },
+  { key: "mobwife", label: "Mob wife", term: "mob wife aesthetic outfit" },
+  { key: "balletcore", label: "Balletcore", term: "balletcore outfit" },
+];
+
+async function runTrend(trend) {
+  input.value = trend.label;
+  status.textContent = `${trend.label} looks…`;
+  const local = await localPhotoObjects(PHOTOS.trends[trend.key], `trend-${trend.key}`, trend.label);
+  let extra = [];
+  try { extra = (await searchPhotos(trend.term)).results || []; } catch { /* offline: show the saved photos only */ }
+  status.textContent = `${local.length + extra.length} ${trend.label} looks`;
+  renderGrid([...local, ...extra]);
+}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   runSearch(input.value);
@@ -130,6 +155,12 @@ async function init() {
   quickTags.querySelectorAll(".library-tag").forEach((btn) => {
     btn.addEventListener("click", () => runSearch(btn.dataset.term));
   });
+
+  const trendRow = document.getElementById("trend-tags");
+  if (trendRow) {
+    trendRow.innerHTML = TRENDS.map((t) => `<button type="button" class="library-tag" data-trend="${t.key}">${t.label}</button>`).join("");
+    trendRow.querySelectorAll(".library-tag").forEach((btn) => btn.addEventListener("click", () => runTrend(TRENDS.find((t) => t.key === btn.dataset.trend))));
+  }
 
   if (style && bodyType) {
     profileChip.style.display = "inline-flex";

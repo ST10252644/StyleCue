@@ -1,6 +1,8 @@
 import { supabase } from "./supabaseClient.js";
 import { SEASON_TYPES, SEASON_QUESTIONS, tallySeason } from "./seasonTypes.js";
 import { renderNav } from "./nav.js";
+import { PHOTOS, quizSeasonImg } from "./photoIndex.js";
+import { photoStrip } from "./photoStrip.js";
 import { showToast } from "./toast.js";
 
 renderNav("season");
@@ -39,11 +41,11 @@ function renderQuestion() {
   progressFill.style.width = `${((current + 1) / SEASON_QUESTIONS.length) * 100}%`;
 
   optionsEl.innerHTML = "";
-  q.options.forEach((opt) => {
+  q.options.forEach((opt, optIdx) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "quiz-option";
-    btn.innerHTML = `<span class="quiz-option__label">${opt.label}</span>`;
+    btn.innerHTML = `<img class="quiz-option__img" src="${quizSeasonImg(current, optIdx)}" alt="${opt.label}" decoding="async" /><span class="quiz-option__label">${opt.label}</span>`;
     btn.addEventListener("click", () => selectAnswer(opt.season));
     optionsEl.appendChild(btn);
   });
@@ -82,6 +84,8 @@ async function finishQuiz() {
   swatches(resultBestColors, result.bestColors);
   swatches(resultAvoidColors, result.avoidColors);
   resultMetal.textContent = result.metal;
+  document.getElementById("season-photos")?.remove();
+  resultEl.insertAdjacentHTML("beforeend", `<div id="season-photos">${photoStrip((PHOTOS.seasons[result.key] || []).slice(0, 4), { title: `${result.name} in real life`, note: "Outfit, makeup, flat-lay and mood." })}${photoStrip((PHOTOS.seasons[result.key] || []).slice(4), { title: "Colours, hair, nails and eyewear", note: "Your best colours, what to avoid, and matching details." })}</div>`);
 
   if (result.tied.length > 1) {
     const names = result.tied.map((k) => SEASON_TYPES[k].name).join(", ");

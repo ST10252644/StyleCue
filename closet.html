@@ -15,6 +15,7 @@
   <main id="main" class="styleguide">
     <h1 class="styleguide__title">Your closet</h1>
     <p class="styleguide__sub">Log what you own, we'll tell you what's missing, and check the fit if you know the garment's measurements.</p>
+    <img class="page-banner" src="images/closet/tidy_wardrobe.jpg" alt="A tidy wardrobe with clothes on hangers" decoding="async" />
 
     <section class="profile-panel">
       <h2>Add an item</h2>
@@ -42,6 +43,10 @@
         </div>
 
         <p class="field-hint" style="margin: 0.5rem 0 0.75rem;">Fit check (optional)</p>
+        <div class="how-measure how-measure--2">
+          <figure><img src="images/fit/fitting_room.jpg" alt="Trying clothes on in a fitting room" loading="lazy" decoding="async" /><figcaption>Try it on</figcaption></figure>
+          <figure><img src="images/fit/mirror_fit_check.jpg" alt="Checking the fit in a mirror" loading="lazy" decoding="async" /><figcaption>Check the fit in a mirror</figcaption></figure>
+        </div>
         <div class="unit-toggle" id="fit-mode-toggle" role="group" aria-label="Fit check method">
           <button type="button" class="is-active" data-mode="none">Skip</button>
           <button type="button" data-mode="size">By size</button>
@@ -56,9 +61,11 @@
             </select>
           </div>
           <p class="field-hint">Estimated from standard sizing, actual fit varies by brand.</p>
+          <div class="hint-row"><img class="hint-photo" src="images/fit/size_chart_label.jpg" alt="A size chart on a clothing label" loading="lazy" decoding="async" /><span>Find your size on the label inside the garment or on the shop's size chart.</span></div>
         </div>
 
         <div id="fit-mode-exact" style="display:none; margin-top:1rem;">
+          <div class="hint-row"><img class="hint-photo" src="images/fit/garment_measure_flatlay.jpg" alt="A garment laid flat with a tape measure" loading="lazy" decoding="async" /><span>Lay the garment flat and measure straight across it, then enter the numbers below.</span></div>
           <div class="unit-toggle" role="group" aria-label="Measurement unit">
         <button type="button" id="unit-cm" class="is-active">cm</button>
         <button type="button" id="unit-in">inches</button>
@@ -93,6 +100,7 @@
 
     <section class="profile-panel">
       <h2>What's missing</h2>
+      <img class="empty-photo" src="images/closet/hanger_rail.jpg" alt="A rail of clothes on hangers" loading="lazy" decoding="async" />
       <p id="gap-intro" style="color:#6b6455; font-size:0.9rem; margin-bottom:1rem;"></p>
       <ul id="gap-list" style="margin:0; padding-left:1.1rem; font-size:0.9rem; line-height:1.7; color:#4a4536;"></ul>
     </section>
@@ -101,7 +109,7 @@
       <h2>Your items (<span id="item-count">0</span>)</h2>
       <div id="closet-list"></div>
       <p id="closet-empty" style="display:none; color:#6b6455; font-size:0.85rem;">
-        <strong>Your closet is empty.</strong><br>Add your first piece in the form above and StyleCue will show which pieces your style still needs.
+        <img class="empty-photo" src="images/pages/empty_closet.jpg" alt="Empty wooden hangers" loading="lazy" decoding="async" /><strong>Your closet is empty.</strong><br>Add your first piece in the form above and StyleCue will show which pieces your style still needs.
       </p>
     </section>
   </main>
