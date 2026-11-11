@@ -1,3 +1,4 @@
+import "./expiry.js";
 // PROTOTYPE MODE: no database and no server.
 // This file replaces the Supabase client with a small local store that keeps
 // everything in the browser/phone storage of whoever opens the prototype.

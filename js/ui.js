@@ -1,3 +1,4 @@
+import "./expiry.js";
 import "./memoryLite.js";
 // Small shared helpers for phone use: password eye, keyboard-safe scrolling, cm/inch units.
 
