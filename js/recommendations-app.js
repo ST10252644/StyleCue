@@ -85,7 +85,7 @@ if (!bodyType || !style) {
             const ex = explainMatch(item, bodyType, style);
             return `
             <article class="rec-card" data-id="${item.id}">
-              <img class="rec-card__photo" src="${[style.images.hero, style.images.palette, style.images.detail][i % 3]}" alt="${style.name} style inspiration photo" loading="lazy" decoding="async" />
+              <img class="rec-card__photo" src="images/products/${item.id}.jpg" alt="${item.name}" loading="lazy" decoding="async" onerror="this.remove()" />
               <div class="rec-card__head">
                 <div class="rec-row__rank">${i + 1}</div>
                 <div class="rec-row__main">
@@ -103,7 +103,7 @@ if (!bodyType || !style) {
             </article>`;
           }).join("")}
         </div>
-        <p class="rec-legend"><span class="chip chip--body">body shape</span> <span class="chip chip--style">style</span> The small tags on each piece show what it matches: one colour for your body shape and one for your style. Photos are style inspiration for your aesthetic, not product images (<a href="credits.html">photo credits</a>).</p>
+        <p class="rec-legend"><span class="chip chip--body">body shape</span> <span class="chip chip--style">style</span> The small tags on each piece show what it matches: one colour for your body shape and one for your style. Each photo shows the kind of piece named, as inspiration, and is not a product you can buy here (<a href="credits.html">photo credits</a>).</p>
       </div>
     `;
   }
