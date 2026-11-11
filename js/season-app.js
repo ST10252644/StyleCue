@@ -2,6 +2,7 @@ import { supabase } from "./supabaseClient.js";
 import { SEASON_TYPES, SEASON_QUESTIONS, tallySeason, seasonBreakdown } from "./seasonTypes.js";
 import { renderNav } from "./nav.js";
 import { PHOTOS, quizSeasonImg } from "./photoIndex.js";
+import { seasonHint, SEASON_DEEP } from "./seasonPhotos.js";
 import { photoStrip } from "./photoStrip.js";
 import { showToast } from "./toast.js";
 
@@ -41,6 +42,8 @@ function renderQuestion() {
   progressLabel.textContent = `Question ${current + 1} of ${SEASON_QUESTIONS.length}`;
   progressFill.style.width = `${((current + 1) / SEASON_QUESTIONS.length) * 100}%`;
 
+  optionsEl.previousElementSibling?.classList?.contains("season-hint") && optionsEl.previousElementSibling.remove();
+  optionsEl.insertAdjacentHTML("beforebegin", seasonHint(q.imgKey));
   optionsEl.innerHTML = "";
   q.options.forEach((opt, optIdx) => {
     const btn = document.createElement("button");
@@ -106,7 +109,7 @@ async function finishQuiz() {
     <p class="analysis__note">The questions use the features that published work on personal colour analysis relies on: undertone (Jackson, 1987), skin, hair and eye colour (Stacchio et al., 2025; Hong and Kim, 2019), wrist veins (Alyoubi et al., 2025), and contrast and vividness (Dinh, 2026). This is an estimate based on what you told the quiz. Lighting, hair dye, tanning and make-up can change how your colouring looks, so check the result in daylight against a few real colours.</p>
   </section>`);
   document.getElementById("season-photos")?.remove();
-  resultEl.insertAdjacentHTML("beforeend", `<div id="season-photos">${photoStrip((PHOTOS.seasons[result.key] || []).slice(0, 4), { title: `${result.name} in real life`, note: "Outfit, makeup, flat-lay and mood." })}${photoStrip((PHOTOS.seasons[result.key] || []).slice(4), { title: "Colours, hair, nails and eyewear", note: "Your best colours, what to avoid, and matching details." })}</div>`);
+  resultEl.insertAdjacentHTML("beforeend", `<div id="season-photos">${photoStrip((PHOTOS.seasons[result.key] || []).slice(0, 4), { title: `${result.name} in real life`, note: "Outfit, makeup, flat-lay and mood." })}${photoStrip((PHOTOS.seasons[result.key] || []).slice(4), { title: "Colours, hair, nails and eyewear", note: "Your best colours, what to avoid, and matching details." })}${photoStrip(SEASON_DEEP[result.key] || [], { title: `What ${result.name} looks like`, note: "Skin tones, hair colours, eyes and contrast that belong to this season." })}</div>`);
 
   if (result.tied.length > 1) {
     const names = result.tied.map((k) => SEASON_TYPES[k].name).join(", ");

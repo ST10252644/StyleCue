@@ -9,6 +9,7 @@ import { showToast } from "./toast.js";
 import { logEvent } from "./usage.js";
 import { PHOTOS } from "./photoIndex.js";
 import { banner } from "./photoStrip.js";
+import { seasonHint } from "./seasonPhotos.js";
 
 const { data: sessionData } = await supabase.auth.getSession();
 if (!sessionData.session) {
@@ -129,6 +130,8 @@ function renderSeasonQuestion() {
   document.getElementById("season-progress-fill").style.width = `${((seasonCurrent + 1) / SEASON_QUESTIONS.length) * 100}%`;
 
   const optionsEl = document.getElementById("season-options");
+  optionsEl.previousElementSibling?.classList?.contains("season-hint") && optionsEl.previousElementSibling.remove();
+  optionsEl.insertAdjacentHTML("beforebegin", seasonHint(q.imgKey));
   optionsEl.innerHTML = "";
   q.options.forEach((opt, optIdx) => {
     const btn = document.createElement("button");
