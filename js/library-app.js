@@ -4,7 +4,8 @@ import { STYLE_TYPES } from "./styleTypes.js";
 import { BODY_TYPES } from "./bodyShape.js";
 import { renderNav } from "./nav.js";
 import { logEvent } from "./usage.js";
-import { PHOTOS } from "./photoIndex.js";
+import { PHOTOS, quizStyleImg } from "./photoIndex.js";
+import { QUIZ_QUESTIONS } from "./quizQuestions.js";
 import { localPhotoObjects } from "./localPhotos.js";
 
 renderNav("library");
@@ -107,6 +108,16 @@ async function runSearch(term) {
   }
 }
 
+// Every saved photo that belongs to a style: the item and outfit photos, the three style page photos and the quiz answer photos.
+function savedStylePhotos(key) {
+  const list = [...(PHOTOS.styles[key] || [])];
+  const img = STYLE_TYPES[key]?.images || {};
+  ["hero", "palette", "detail"].forEach((k) => { if (img[k]) list.push({ src: img[k], label: k }); });
+  QUIZ_QUESTIONS.forEach((q, qi) => q.options.forEach((o, oi) => { if (o.style === key) list.push({ src: quizStyleImg(qi, oi), label: o.label }); }));
+  const seen = new Set();
+  return list.filter((p) => (seen.has(p.src) ? false : seen.add(p.src)));
+}
+
 // Alternate the saved photos with the live ones, so both kinds sit side by side in the grid.
 function interleave(a, b) {
   const out = [];
@@ -171,7 +182,7 @@ async function init() {
   quickTags.querySelectorAll(".library-tag").forEach((btn) => {
     btn.addEventListener("click", () => {
       const key = btn.dataset.style;
-      runMixed(STYLE_TYPES[key].name, PHOTOS.styles[key], `style-${key}`, STYLE_TYPES[key].keywords);
+      runMixed(STYLE_TYPES[key].name, savedStylePhotos(key), `style-${key}`, STYLE_TYPES[key].keywords);
     });
   });
   const bodyRow = document.getElementById("body-tags");
@@ -197,7 +208,7 @@ async function init() {
     profileChip.style.display = "inline-flex";
     profileChipText.textContent = `Searching for your profile: ${style.name} × ${bodyType.name}`;
     const combinedQuery = `${style.keywords} ${bodyType.keywords}`;
-    await runMixed(`${style.name} and ${bodyType.name}`, interleave(PHOTOS.styles[profile.style_personality] || [], PHOTOS.body[profile.body_shape] || []), `profile-${profile.style_personality}`, combinedQuery);
+    await runMixed(`${style.name} and ${bodyType.name}`, interleave(savedStylePhotos(profile.style_personality), PHOTOS.body[profile.body_shape] || []), `profile-${profile.style_personality}`, combinedQuery);
   } else {
     // Profile incomplete, fall back to a default and nudge them to finish it
     status.innerHTML = `Complete your <a href="bodytype.html">body shape</a> and <a href="quiz.html">style quiz</a> to get looks matched to you, showing a general search for now.`;
