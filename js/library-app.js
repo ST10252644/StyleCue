@@ -59,9 +59,28 @@ async function toggleSave(photo, btn) {
   }
 }
 
+// Draw the grid in small batches. Hundreds of photos at once can use so much memory that a phone browser closes the page.
+const BATCH = 12;
 function renderGrid(photos) {
   results.innerHTML = "";
-  photos.forEach((photo) => {
+  document.getElementById("library-more")?.remove();
+  let shown = 0;
+  const more = document.createElement("button");
+  more.type = "button"; more.id = "library-more"; more.className = "btn-primary";
+  more.style.cssText = "max-width:16rem;margin:1rem auto;display:block";
+  more.addEventListener("click", () => { drawBatch(); });
+  results.after(more);
+  function drawBatch() {
+    photos.slice(shown, shown + BATCH).forEach((photo) => drawCard(photo));
+    shown = Math.min(photos.length, shown + BATCH);
+    more.hidden = shown >= photos.length;
+    more.textContent = `Show more looks (${photos.length - shown} left)`;
+  }
+  drawBatch();
+}
+
+function drawCard(photo) {
+  {
     const card = document.createElement("div");
     card.className = "library-card";
 
@@ -71,7 +90,7 @@ function renderGrid(photos) {
     const unsplashLink = isPin ? photo.user.links.html : `https://unsplash.com/?utm_source=stylecue&utm_medium=referral`;
 
     card.innerHTML = `
-      <img src="${photo.urls.small}" alt="${photo.alt_description || "Style inspiration photo"}" loading="lazy" />
+      <img src="${photo.urls.small}" alt="${photo.alt_description || "Style inspiration photo"}" loading="lazy" decoding="async" />
       <button class="library-card__save${isSaved ? " is-saved" : ""}" type="button">${isSaved ? "♥" : "♡"}</button>
       <div class="library-credit">
         <a href="${photographerLink}" target="_blank" rel="noopener">${photo.user.name}</a>
@@ -84,7 +103,7 @@ function renderGrid(photos) {
     });
 
     results.appendChild(card);
-  });
+  }
 }
 
 async function runSearch(term) {
@@ -132,6 +151,7 @@ async function runMixed(label, localList, idPrefix, term) {
   input.value = label;
   status.textContent = `${label} looks…`;
   const local = await localPhotoObjects(localList, idPrefix, label);
+  local.sort((a, b) => (b.urls.small.includes("_look_") ? 1 : 0) - (a.urls.small.includes("_look_") ? 1 : 0));
   let extra = [];
   try { extra = (await searchPhotos(term)).results || []; } catch { /* offline: show the saved photos only */ }
   status.textContent = `${local.length + extra.length} ${label} looks`;
