@@ -107,6 +107,26 @@ async function runSearch(term) {
   }
 }
 
+// Alternate the saved photos with the live ones, so both kinds sit side by side in the grid.
+function interleave(a, b) {
+  const out = [];
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    if (i < a.length) out.push(a[i]);
+    if (i < b.length) out.push(b[i]);
+  }
+  return out;
+}
+
+async function runMixed(label, localList, idPrefix, term) {
+  input.value = label;
+  status.textContent = `${label} looks…`;
+  const local = await localPhotoObjects(localList, idPrefix, label);
+  let extra = [];
+  try { extra = (await searchPhotos(term)).results || []; } catch { /* offline: show the saved photos only */ }
+  status.textContent = `${local.length + extra.length} ${label} looks`;
+  renderGrid(interleave(local, extra));
+}
+
 const TRENDS = [
   { key: "oldmoney", label: "Old money", term: "old money outfit woman" },
   { key: "cleangirl", label: "Clean girl", term: "clean girl aesthetic outfit" },
@@ -122,11 +142,7 @@ const TRENDS = [
 async function runTrend(trend) {
   input.value = trend.label;
   status.textContent = `${trend.label} looks…`;
-  const local = await localPhotoObjects(PHOTOS.trends[trend.key], `trend-${trend.key}`, trend.label);
-  let extra = [];
-  try { extra = (await searchPhotos(trend.term)).results || []; } catch { /* offline: show the saved photos only */ }
-  status.textContent = `${local.length + extra.length} ${trend.label} looks`;
-  renderGrid([...local, ...extra]);
+  await runMixed(trend.label, PHOTOS.trends[trend.key], `trend-${trend.key}`, trend.term);
 }
 
 form.addEventListener("submit", (e) => {
@@ -148,13 +164,28 @@ async function init() {
   const bodyType = profile?.body_shape ? BODY_TYPES[profile.body_shape] : null;
 
   // Quick tags: a handful of popular styles, always available
-  const tagList = ["classic", "minimalist", "bohemian", "streetwear", "cottagecore", "edgy"];
+  const tagList = Object.keys(STYLE_TYPES);
   quickTags.innerHTML = tagList
-    .map((key) => `<button type="button" class="library-tag" data-term="${STYLE_TYPES[key].keywords}">${STYLE_TYPES[key].name}</button>`)
+    .map((key) => `<button type="button" class="library-tag" data-style="${key}">${STYLE_TYPES[key].name}</button>`)
     .join("");
   quickTags.querySelectorAll(".library-tag").forEach((btn) => {
-    btn.addEventListener("click", () => runSearch(btn.dataset.term));
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.style;
+      runMixed(STYLE_TYPES[key].name, PHOTOS.styles[key], `style-${key}`, STYLE_TYPES[key].keywords);
+    });
   });
+  const bodyRow = document.getElementById("body-tags");
+  if (bodyRow) {
+    bodyRow.innerHTML = Object.keys(BODY_TYPES)
+      .map((key) => `<button type="button" class="library-tag" data-body="${key}">${BODY_TYPES[key].name}</button>`)
+      .join("");
+    bodyRow.querySelectorAll(".library-tag").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.body;
+        runMixed(`${BODY_TYPES[key].name} shape`, PHOTOS.body[key], `body-${key}`, BODY_TYPES[key].keywords);
+      });
+    });
+  }
 
   const trendRow = document.getElementById("trend-tags");
   if (trendRow) {
@@ -166,7 +197,7 @@ async function init() {
     profileChip.style.display = "inline-flex";
     profileChipText.textContent = `Searching for your profile: ${style.name} × ${bodyType.name}`;
     const combinedQuery = `${style.keywords} ${bodyType.keywords}`;
-    runSearch(combinedQuery);
+    await runMixed(`${style.name} and ${bodyType.name}`, interleave(PHOTOS.styles[profile.style_personality] || [], PHOTOS.body[profile.body_shape] || []), `profile-${profile.style_personality}`, combinedQuery);
   } else {
     // Profile incomplete, fall back to a default and nudge them to finish it
     status.innerHTML = `Complete your <a href="bodytype.html">body shape</a> and <a href="quiz.html">style quiz</a> to get looks matched to you, showing a general search for now.`;

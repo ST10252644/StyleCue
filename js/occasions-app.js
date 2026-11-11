@@ -130,7 +130,8 @@ async function selectOccasion(occasion) {
     const local = await localPhotoObjects(PHOTOS.occasions[occasion.key], `occ-${occasion.key}`, occasion.label);
     let more = [];
     try { more = (await searchPhotos(term)).results || []; } catch { /* offline: only the saved photos */ }
-    const all = [...local, ...more];
+    const all = [];
+    for (let i = 0; i < Math.max(local.length, more.length); i++) { if (i < local.length) all.push(local[i]); if (i < more.length) all.push(more[i]); }
     if (all.length === 0) {
       resultsEl.innerHTML = `<div class="library-empty">No results, try another occasion.</div>`;
       statusEl.textContent = "";
