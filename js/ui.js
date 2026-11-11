@@ -1,3 +1,4 @@
+import "./memoryLite.js";
 // Small shared helpers for phone use: password eye, keyboard-safe scrolling, cm/inch units.
 
 // ---- 1. Show / hide password ----
