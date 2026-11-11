@@ -68,3 +68,13 @@ input:focus, select:focus, textarea:focus { border-color: var(--lilac-deep) !imp
 /* Photos and badges */
 .photo-strip__row img, .photo-grid__item img, .page-banner img, .hint-photo img { border-radius: 16px; }
 .app-bar__badge { background: var(--lime); color: var(--plum); }
+
+/* Picks and Think it over explainers */
+.rec-howto { background: #fff; border: 1.5px solid #d9ccfb; border-radius: 18px; padding: .85rem 1rem; margin: .75rem 0 1rem; font-size: .9rem; line-height: 1.45; color: var(--plum); }
+.rec-howto > strong:first-child { display: block; margin-bottom: .35rem; font-size: .95rem; }
+.rec-howto ul, .rec-howto ol { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .3rem; }
+.rec-howto p { margin: .5rem 0 0; color: #5a4d7d; }
+.rec-row__score { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; padding: .35rem .75rem; }
+.rec-row__score-num { font-weight: 800; font-size: .95rem; }
+.rec-row__score-label { font-size: .7rem; font-weight: 600; color: #3f3463; }
+.rec-card__think { width: 100%; }

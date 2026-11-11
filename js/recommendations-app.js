@@ -53,8 +53,8 @@ if (!bodyType || !style) {
 
   let html = `
     <div class="styleguide-section">
-      <h2>Your combined attributes</h2>
-      <p>From ${bodyType.name} (${bodyType.attributes.join(", ")}) and ${style.name} (${style.attributes.join(", ")}), deduplicated to ${userAttributes.length} unique attributes:</p>
+      <h2>What suits you</h2>
+      <p>Your body shape is <strong>${bodyType.name}</strong> and your style is <strong>${style.name}</strong>. Together, these give ${userAttributes.length} things to look for in clothes (attributes), shown below. StyleCue compares every piece in the sample catalogue with this list.</p>
       <div class="swatch-row" style="margin-top:0.75rem;">
         ${userAttributes.map((a) => `<span class="swatch-chip" style="background:rgba(21,19,14,0.06); color:var(--ink); border-color:var(--line-on-bone);">${a}</span>`).join("")}
       </div>
@@ -70,7 +70,16 @@ if (!bodyType || !style) {
   } else {
     html += `
       <div class="styleguide-section">
-        <h2>Ranked matches</h2>
+        <h2>Your best matches</h2>
+        <div class="rec-howto">
+          <strong>How to read this page</strong>
+          <ul>
+            <li><strong>Order:</strong> the best match is first (number 1) and the weakest is last.</li>
+            <li><strong>Score:</strong> a piece gets one point for each of your ${userAttributes.length} things it has. "3 of ${userAttributes.length}" means it fits 3 of them. A higher score is a better fit.</li>
+            <li><strong>Why this?</strong> tells you in words which of your things the piece fits.</li>
+            <li><strong>Save for later</strong> puts it on your Think it over list. You answer a few quick questions there before you buy, so it is a way to slow down and decide.</li>
+          </ul>
+        </div>
         <div class="rec-table">
           ${matches.map((item, i) => {
             const ex = explainMatch(item, bodyType, style);
@@ -83,18 +92,18 @@ if (!bodyType || !style) {
                   <div class="rec-row__name">${item.name}</div>
                   <div class="rec-row__category">${item.category}</div>
                 </div>
-                <div class="rec-row__score" title="Matched attributes out of your ${item.total}">${item.score}/${item.total}</div>
+                <div class="rec-row__score" title="This piece fits ${item.score} of your ${item.total} things"><span class="rec-row__score-num">${item.score} of ${item.total}</span><span class="rec-row__score-label">${item.score / item.total >= 0.5 ? "Strong match" : item.score / item.total >= 0.3 ? "Good match" : "Possible match"}</span></div>
               </div>
               <div class="swatch-row">
                 ${ex.fromBody.map((t) => `<span class="chip chip--body">${t}</span>`).join("")}
                 ${ex.fromStyle.map((t) => `<span class="chip chip--style">${t}</span>`).join("")}
               </div>
               <p class="rec-card__why"><strong>Why this?</strong> ${ex.text}</p>
-              <button class="btn-ghost rec-card__think" type="button" data-id="${item.id}" ${has(userId, item.id) ? "disabled" : ""}>${has(userId, item.id) ? "Saved to Think it over" : "Think it over"}</button>
+              <button class="btn-ghost rec-card__think" type="button" data-id="${item.id}" ${has(userId, item.id) ? "disabled" : ""}>${has(userId, item.id) ? "Saved to your Think it over list" : "Save for later"}</button>
             </article>`;
           }).join("")}
         </div>
-        <p class="rec-legend"><span class="chip chip--body">body shape</span> <span class="chip chip--style">style</span> Colours show where each match came from. Photos are style inspiration for your aesthetic, not product images (<a href="credits.html">photo credits</a>).</p>
+        <p class="rec-legend"><span class="chip chip--body">body shape</span> <span class="chip chip--style">style</span> The small tags on each piece show what it matches: one colour for your body shape and one for your style. Photos are style inspiration for your aesthetic, not product images (<a href="credits.html">photo credits</a>).</p>
       </div>
     `;
   }
@@ -114,7 +123,7 @@ contentEl.addEventListener("click", (e) => {
   const item = computeMatches(userAttributes, PRODUCT_CATALOG, 99).find((m) => m.id === btn.dataset.id);
   add(userId, { id: item.id, name: item.name, category: item.category, why: explainMatch(item, bodyType, style).text });
   btn.disabled = true;
-  btn.textContent = "Saved to Think it over";
+  btn.textContent = "Saved to your Think it over list";
   logEvent(userId, "think_saved", item.name);
-  showToast("Saved. No rush to decide.");
+  showToast("Saved to your Think it over list. No rush to decide.");
 });

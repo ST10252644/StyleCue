@@ -17,14 +17,14 @@ function ago(ts) {
 function render() {
   const list = getList(uid);
   if (!list.length) {
-    el.innerHTML = `<div class="styleguide-nudge"><img class="empty-photo" src="images/pages/empty_state_3.jpg" alt="An empty shopping bag" loading="lazy" decoding="async" /><br>Nothing here yet. On <a href="recommendations.html">Picks</a>, tap “Think it over” on anything you like.</div>`;
+    el.innerHTML = `<div class="styleguide-nudge"><img class="empty-photo" src="images/pages/empty_state_3.jpg" alt="An empty shopping bag" loading="lazy" decoding="async" /><br>Nothing here yet. Go to <a href="recommendations.html">Picks</a> and tap “Save for later” on anything you like. It will appear here, and you can decide when you are ready.</div>`;
     return;
   }
   el.innerHTML = list.map((i) => `
     <article class="think-card" data-id="${i.id}">
       <div class="think-card__top">
         <div><div class="rec-row__name">${i.name}</div><div class="rec-row__category">${i.category} · ${ago(i.savedAt)}</div></div>
-        <span class="think-status think-status--${i.status}">${i.status === "thinking" ? "Thinking" : i.status === "decided" ? "Decided" : "Skipped"}</span>
+        <span class="think-status think-status--${i.status}">${i.status === "thinking" ? "Still thinking" : i.status === "decided" ? "Decided" : "Skipped"}</span>
       </div>
       <p class="think-why">${i.why}</p>
       ${i.status === "thinking" ? `
