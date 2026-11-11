@@ -46,7 +46,7 @@ function renderQuestion() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "quiz-option";
-    btn.innerHTML = `<img class="quiz-option__img" src="${quizSeasonImg(current, optIdx)}" alt="" decoding="async" onerror="this.parentElement.classList.add('quiz-option--text');this.remove()" /><span class="quiz-option__label">${opt.label}</span>`;
+    btn.innerHTML = `<img class="quiz-option__img" src="${quizSeasonImg(q.imgKey, optIdx)}" alt="" decoding="async" onerror="this.parentElement.classList.add('quiz-option--text');this.remove()" /><span class="quiz-option__label">${opt.label}</span>`;
     btn.addEventListener("click", () => { chosen[current] = opt; selectAnswer(opt.season); });
     optionsEl.appendChild(btn);
   });
@@ -88,7 +88,7 @@ async function finishQuiz() {
   document.getElementById("season-analysis")?.remove();
   const pct = (o, a, b) => `${a} ${o[a.toLowerCase()] || 0}% · ${b} ${o[b.toLowerCase()] || 0}%`;
   const f = result.features;
-  const rows = seasonBreakdown(chosen).map((r) => `<li><strong>${r.feature}:</strong> ${r.label}<span class="analysis__pts">${r.seasons.length ? "Points to " + r.seasons.join(" and ") : "Neutral, no points"}</span></li>`).join("");
+  const rows = seasonBreakdown(chosen).map((r) => `<li><strong>${r.feature}:</strong> ${r.label}<span class="analysis__pts">${r.seasons.length ? "Points to " + r.seasons.join(" and ") : "Neutral, no points"} · Based on ${r.source}</span></li>`).join("");
   resultEl.insertAdjacentHTML("beforeend", `<section id="season-analysis" class="analysis">
     <h2 class="types-heading">Your colouring in detail</h2>
     <div class="analysis__axes">
@@ -103,7 +103,7 @@ async function finishQuiz() {
     </ul>
     <h3 class="analysis__sub">How each of your answers counted</h3>
     <ul class="analysis__list">${rows}</ul>
-    <p class="analysis__note">This is an estimate based on what you told the quiz. Lighting, hair dye, tanning and make-up can change how your colouring looks, so check the result in daylight against a few real colours.</p>
+    <p class="analysis__note">The questions use the features that published work on personal colour analysis relies on: undertone (Jackson, 1987), skin, hair and eye colour (Stacchio et al., 2025; Hong and Kim, 2019), wrist veins (Alyoubi et al., 2025), and contrast and vividness (Dinh, 2026). This is an estimate based on what you told the quiz. Lighting, hair dye, tanning and make-up can change how your colouring looks, so check the result in daylight against a few real colours.</p>
   </section>`);
   document.getElementById("season-photos")?.remove();
   resultEl.insertAdjacentHTML("beforeend", `<div id="season-photos">${photoStrip((PHOTOS.seasons[result.key] || []).slice(0, 4), { title: `${result.name} in real life`, note: "Outfit, makeup, flat-lay and mood." })}${photoStrip((PHOTOS.seasons[result.key] || []).slice(4), { title: "Colours, hair, nails and eyewear", note: "Your best colours, what to avoid, and matching details." })}</div>`);

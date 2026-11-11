@@ -15,7 +15,7 @@ export const SEASON_TYPES = {
     fabricNote: "Lighter, crisp fabrics in clear warm tones suit you best, avoid anything that reads dusty or muted.",
     keywords: "spring color palette warm bright outfit",
     images: { hero: "images/seasons/spring/hero.jpg" },
-    features: {"skin": "Light to medium skin with a warm, golden or peachy undertone, often with freckles or a warm flush.", "hair": "Golden blonde, strawberry blonde or light warm brown.", "eyes": "Light warm eyes such as golden green, turquoise, hazel or light warm brown.", "contrast": "Low to medium contrast. The overall look is fresh and bright.", "veins": "Veins tend to look green. Gold jewellery looks best."},
+    features: {"skin": "Light to medium skin with a warm, golden or peachy undertone, often with freckles or a warm flush.", "hair": "Golden blonde, strawberry blonde or light warm brown.", "eyes": "Light warm eyes such as golden green, turquoise, hazel or light warm brown.", "contrast": "Low to medium contrast. The overall look is fresh and bright.", "veins": "Wrist veins tend to look green."},
   },
   summer: {
     name: "Summer",
@@ -27,7 +27,7 @@ export const SEASON_TYPES = {
     fabricNote: "Soft-drape fabrics in muted, powdery tones work with your coloring rather than against it.",
     keywords: "summer color palette soft muted outfit",
     images: { hero: "images/seasons/summer/hero.jpg" },
-    features: {"skin": "Fair to medium skin with a cool pink or neutral-cool undertone that can burn easily.", "hair": "Ash blonde, light ash brown or soft mid brown, with no golden or red shine.", "eyes": "Soft blue, grey, blue-green, soft hazel or soft brown eyes.", "contrast": "Low contrast. Skin, hair and eyes blend softly together.", "veins": "Veins tend to look blue or purple. Silver jewellery looks best."},
+    features: {"skin": "Fair to medium skin with a cool pink or neutral-cool undertone that can burn easily.", "hair": "Ash blonde, light ash brown or soft mid brown, with no golden or red shine.", "eyes": "Soft blue, grey, blue-green, soft hazel or soft brown eyes.", "contrast": "Low contrast. Skin, hair and eyes blend softly together.", "veins": "Wrist veins tend to look blue or purple."},
   },
   autumn: {
     name: "Autumn",
@@ -39,7 +39,7 @@ export const SEASON_TYPES = {
     fabricNote: "Rich, textured fabrics in warm, earthy tones are your strongest base.",
     keywords: "autumn color palette earthy warm outfit",
     images: { hero: "images/seasons/autumn/hero.jpg" },
-    features: {"skin": "Medium to deep skin with a warm golden, olive or bronze undertone that tans easily.", "hair": "Red, copper, auburn, chestnut or warm dark brown.", "eyes": "Deep warm brown, amber, olive green or warm hazel eyes.", "contrast": "Medium contrast. The overall look is rich, earthy and warm.", "veins": "Veins tend to look green or olive. Gold or bronze jewellery looks best."},
+    features: {"skin": "Medium to deep skin with a warm golden, olive or bronze undertone that tans easily.", "hair": "Red, copper, auburn, chestnut or warm dark brown.", "eyes": "Deep warm brown, amber, olive green or warm hazel eyes.", "contrast": "Medium contrast. The overall look is rich, earthy and warm.", "veins": "Wrist veins tend to look green or olive."},
   },
   winter: {
     name: "Winter",
@@ -51,7 +51,7 @@ export const SEASON_TYPES = {
     fabricNote: "High-contrast, saturated color reads strongest on you, soft or muted tones tend to wash you out.",
     keywords: "winter color palette bold cool outfit",
     images: { hero: "images/seasons/winter/hero.jpg" },
-    features: {"skin": "Fair to very deep skin with a cool or blue-based undertone, often with a clear, even surface.", "hair": "Black, espresso or cool dark brown, or very light ash blonde with strong contrast.", "eyes": "Very dark brown, black-brown, icy blue, grey or bright emerald eyes.", "contrast": "High contrast. Dark hair against light skin, or very distinct features.", "veins": "Veins tend to look blue or purple. Silver or platinum jewellery looks best."},
+    features: {"skin": "Fair to very deep skin with a cool or blue-based undertone, often with a clear, even surface.", "hair": "Black, espresso or cool dark brown, or very light ash blonde with strong contrast.", "eyes": "Very dark brown, black-brown, icy blue, grey or bright emerald eyes.", "contrast": "High contrast. Dark hair against light skin, or very distinct features.", "veins": "Wrist veins tend to look blue or purple."},
   },
 };
 
@@ -66,8 +66,13 @@ export const SEASON_AXES = {
 // An option's season can be one season, a list of seasons (the answer fits both, so each gets half a point)
 // or null (a neutral answer such as "hard to tell", which scores nothing).
 export const SEASON_QUESTIONS = [
+  // Every question asks about a feature that the published work on personal colour analysis uses:
+  // undertone (Jackson, 1987), skin, hair and eye colour (Stacchio et al., 2025; Hong and Kim, 2019;
+  // Alyoubi et al., 2025), wrist vein undertone (Alyoubi et al., 2025), contrast and vividness (Dinh, 2026).
   {
     feature: "Overall colouring",
+    imgKey: "q1",
+    source: "Jackson (1987)",
     prompt: "Which best describes your natural coloring?",
     options: [
       { label: "Warm golden undertones, hair lightens in the sun", season: "spring" },
@@ -77,67 +82,33 @@ export const SEASON_QUESTIONS = [
     ],
   },
   {
-    feature: "Metal preference",
-    prompt: "Pick a metal you gravitate toward",
-    options: [
-      { label: "Gold, warm and bright", season: "spring" },
-      { label: "Silver, soft and cool", season: "summer" },
-      { label: "Bronze or antique gold", season: "autumn" },
-      { label: "Silver or platinum, high shine", season: "winter" },
-    ],
-  },
-  {
-    feature: "Lipstick shade",
-    prompt: "Pick a lipstick shade",
-    options: [
-      { label: "Coral or peach", season: "spring" },
-      { label: "Rose or mauve", season: "summer" },
-      { label: "Brick red or terracotta", season: "autumn" },
-      { label: "Blue-red or berry", season: "winter" },
-    ],
-  },
-  {
-    feature: "Preferred palette",
-    prompt: "Pick your ideal color palette to wear",
-    options: [
-      { label: "Bright, clear, warm colors", season: "spring" },
-      { label: "Soft, muted, cool colors", season: "summer" },
-      { label: "Rich, earthy, warm colors", season: "autumn" },
-      { label: "Bold, deep, cool colors", season: "winter" },
-    ],
-  },
-  {
-    feature: "Veins",
+    feature: "Wrist veins",
+    imgKey: "veins",
+    source: "Alyoubi et al. (2025)",
     prompt: "Look at the veins on the inside of your wrist in daylight. What colour are they?",
     options: [
       { label: "Mostly blue or purple", season: ["summer", "winter"] },
       { label: "Mostly green or olive", season: ["spring", "autumn"] },
-      { label: "Blue-green, a mix of both", season: null },
+      { label: "A mix of blue and green", season: null },
       { label: "Hard to tell", season: null },
     ],
   },
   {
-    feature: "Jewellery test",
-    prompt: "Hold gold and silver jewellery against your face. Which one makes your skin look healthier?",
+    feature: "Skin colour",
+    imgKey: "skin",
+    source: "Stacchio et al. (2025); Hong and Kim (2019)",
+    prompt: "Which best describes your skin colour?",
     options: [
-      { label: "Gold looks best", season: ["spring", "autumn"] },
-      { label: "Silver looks best", season: ["summer", "winter"] },
-      { label: "Rose gold looks best", season: "summer" },
-      { label: "Both look fine", season: null },
-    ],
-  },
-  {
-    feature: "White test",
-    prompt: "Hold a stark white sheet and a cream sheet under your chin. Which one suits your skin?",
-    options: [
-      { label: "Stark, bright white", season: "winter" },
-      { label: "Soft white with a hint of blue or grey", season: "summer" },
-      { label: "Warm ivory", season: "spring" },
-      { label: "Cream or oatmeal", season: "autumn" },
+      { label: "Fair or light with a golden or peachy tone", season: "spring" },
+      { label: "Fair or light with a pink or rosy tone", season: "summer" },
+      { label: "Medium to deep with a golden, olive or bronze tone", season: "autumn" },
+      { label: "Fair to very deep with a cool, blue-based tone", season: "winter" },
     ],
   },
   {
     feature: "Natural hair colour",
+    imgKey: "hair",
+    source: "Stacchio et al. (2025); Hong and Kim (2019)",
     prompt: "What is your natural hair colour, before any dye?",
     options: [
       { label: "Golden blonde, strawberry blonde or light warm brown", season: "spring" },
@@ -148,6 +119,8 @@ export const SEASON_QUESTIONS = [
   },
   {
     feature: "Eye colour",
+    imgKey: "eyes",
+    source: "Stacchio et al. (2025); Alyoubi et al. (2025)",
     prompt: "Which best describes your eyes?",
     options: [
       { label: "Light and warm: golden green, turquoise, hazel or light warm brown", season: "spring" },
@@ -157,33 +130,27 @@ export const SEASON_QUESTIONS = [
     ],
   },
   {
-    feature: "Skin tone and sun",
-    prompt: "Which best describes your skin tone and how it reacts to the sun?",
-    options: [
-      { label: "Fair or light with a golden or peachy tone, burns easily, may freckle", season: "spring" },
-      { label: "Fair or light with a pink tone, burns first and then tans a little", season: "summer" },
-      { label: "Medium to deep with a golden or olive tone, tans easily", season: "autumn" },
-      { label: "Porcelain or very deep with a cool tone, burns or tans very little", season: "winter" },
-    ],
-  },
-  {
     feature: "Contrast",
+    imgKey: "contrast",
+    source: "Dinh (2026)",
     prompt: "How strongly do your skin, hair and eyes stand out against each other?",
     options: [
-      { label: "Low contrast, everything is light and blended", season: "summer" },
-      { label: "Low to medium, fresh and warm", season: "spring" },
-      { label: "Medium, everything looks rich and deep", season: "autumn" },
-      { label: "High, dark hair against light skin or very distinct features", season: "winter" },
+      { label: "Low contrast, everything is close in lightness and blended", season: ["summer", "autumn"] },
+      { label: "Medium contrast", season: null },
+      { label: "High contrast, for example dark hair against light skin", season: ["winter", "spring"] },
+      { label: "Not sure", season: null },
     ],
   },
   {
-    feature: "Black test",
-    prompt: "How do you look in a black top held near your face?",
+    feature: "Vividness",
+    imgKey: "vivid",
+    source: "Dinh (2026)",
+    prompt: "Do your features look clear and bright, or soft and muted?",
     options: [
-      { label: "Striking, black makes my features stand out", season: "winter" },
-      { label: "Too heavy, soft navy or charcoal looks better", season: "summer" },
-      { label: "Washed out or tired, dark brown looks better", season: ["spring", "autumn"] },
-      { label: "Fine, I see no big difference", season: null },
+      { label: "Clear and bright, with sharp, fresh features", season: ["spring", "winter"] },
+      { label: "Soft and muted, with gentle, blended features", season: ["summer", "autumn"] },
+      { label: "A bit of both", season: null },
+      { label: "Not sure", season: null },
     ],
   },
 ];
@@ -235,6 +202,7 @@ export function tallySeason(answers) {
 export function seasonBreakdown(options) {
   return options.map((o, i) => ({
     feature: SEASON_QUESTIONS[i].feature,
+    source: SEASON_QUESTIONS[i].source,
     label: o.label,
     seasons: o.season ? (Array.isArray(o.season) ? o.season : [o.season]).map((k) => SEASON_TYPES[k].name) : [],
   }));

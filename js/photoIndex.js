@@ -1753,7 +1753,7 @@ export const PHOTOS = {
 };
 
 export const quizStyleImg = (qIdx, optIdx) => `images/quiz/style/q${String(qIdx + 1).padStart(2, "0")}${"abcd"[optIdx]}.jpg`;
-export const quizSeasonImg = (qIdx, optIdx) => `images/quiz/season/q${qIdx + 1}${"abcd"[optIdx]}.jpg`;
+export const quizSeasonImg = (key, optIdx) => `images/quiz/season/${key}${"abcd"[optIdx]}.jpg`;
 
 // BODY_TYPES uses camelCase keys, the folder uses lower case.
 PHOTOS.body.invertedTriangle = PHOTOS.body.invertedtriangle;
