@@ -1,5 +1,5 @@
 import { supabase } from "./supabaseClient.js";
-import { SEASON_TYPES, SEASON_QUESTIONS, tallySeason } from "./seasonTypes.js";
+import { SEASON_TYPES, SEASON_QUESTIONS, tallySeason, seasonBreakdown } from "./seasonTypes.js";
 import { renderNav } from "./nav.js";
 import { PHOTOS, quizSeasonImg } from "./photoIndex.js";
 import { photoStrip } from "./photoStrip.js";
@@ -33,6 +33,7 @@ const saveMsg = document.getElementById("save-msg");
 
 let current = 0;
 const answers = [];
+const chosen = [];
 
 function renderQuestion() {
   const q = SEASON_QUESTIONS[current];
@@ -45,8 +46,8 @@ function renderQuestion() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "quiz-option";
-    btn.innerHTML = `<img class="quiz-option__img" src="${quizSeasonImg(current, optIdx)}" alt="${opt.label}" decoding="async" /><span class="quiz-option__label">${opt.label}</span>`;
-    btn.addEventListener("click", () => selectAnswer(opt.season));
+    btn.innerHTML = `<img class="quiz-option__img" src="${quizSeasonImg(current, optIdx)}" alt="" decoding="async" onerror="this.parentElement.classList.add('quiz-option--text');this.remove()" /><span class="quiz-option__label">${opt.label}</span>`;
+    btn.addEventListener("click", () => { chosen[current] = opt; selectAnswer(opt.season); });
     optionsEl.appendChild(btn);
   });
 }
@@ -80,10 +81,30 @@ async function finishQuiz() {
   resultHeroImg.style.backgroundImage = `url('${result.images.hero}')`;
   resultSeason.textContent = result.name;
   resultTagline.textContent = result.tagline;
-  resultReason.textContent = `Your answers leaned ${result.name.toLowerCase()} ${result.score} out of ${result.total} times. ${result.description}`;
+  resultReason.textContent = `${result.score} of your ${result.total} scored answers pointed to ${result.name.toLowerCase()}. ${result.description}`;
   swatches(resultBestColors, result.bestColors);
   swatches(resultAvoidColors, result.avoidColors);
   resultMetal.textContent = result.metal;
+  document.getElementById("season-analysis")?.remove();
+  const pct = (o, a, b) => `${a} ${o[a.toLowerCase()] || 0}% · ${b} ${o[b.toLowerCase()] || 0}%`;
+  const f = result.features;
+  const rows = seasonBreakdown(chosen).map((r) => `<li><strong>${r.feature}:</strong> ${r.label}<span class="analysis__pts">${r.seasons.length ? "Points to " + r.seasons.join(" and ") : "Neutral, no points"}</span></li>`).join("");
+  resultEl.insertAdjacentHTML("beforeend", `<section id="season-analysis" class="analysis">
+    <h2 class="types-heading">Your colouring in detail</h2>
+    <div class="analysis__axes">
+      <div><span class="dash-card__label">Undertone</span><strong>${pct(result.axes.undertone, "Warm", "Cool")}</strong></div>
+      <div><span class="dash-card__label">Depth</span><strong>${pct(result.axes.depth, "Light", "Deep")}</strong></div>
+      <div><span class="dash-card__label">Chroma</span><strong>${pct(result.axes.chroma, "Clear", "Soft")}</strong></div>
+    </div>
+    <h3 class="analysis__sub">What ${result.name} usually looks like</h3>
+    <ul class="analysis__list">
+      <li><strong>Skin:</strong> ${f.skin}</li><li><strong>Hair:</strong> ${f.hair}</li><li><strong>Eyes:</strong> ${f.eyes}</li>
+      <li><strong>Contrast:</strong> ${f.contrast}</li><li><strong>Tests:</strong> ${f.veins}</li>
+    </ul>
+    <h3 class="analysis__sub">How each of your answers counted</h3>
+    <ul class="analysis__list">${rows}</ul>
+    <p class="analysis__note">This is an estimate based on what you told the quiz. Lighting, hair dye, tanning and make-up can change how your colouring looks, so check the result in daylight against a few real colours.</p>
+  </section>`);
   document.getElementById("season-photos")?.remove();
   resultEl.insertAdjacentHTML("beforeend", `<div id="season-photos">${photoStrip((PHOTOS.seasons[result.key] || []).slice(0, 4), { title: `${result.name} in real life`, note: "Outfit, makeup, flat-lay and mood." })}${photoStrip((PHOTOS.seasons[result.key] || []).slice(4), { title: "Colours, hair, nails and eyewear", note: "Your best colours, what to avoid, and matching details." })}</div>`);
 

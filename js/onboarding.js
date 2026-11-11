@@ -114,7 +114,7 @@ async function finishStyle() {
   sectionSeason.style.display = "block";
   sectionLabel.textContent = "Section 3 of 3 · Color season";
   sectionTitle.textContent = "What's your color season?";
-  sectionLede.textContent = "Four questions on undertone and depth.";
+  sectionLede.textContent = "Twelve questions on undertone, depth, hair, eyes and skin.";
   renderSeasonQuestion();
 }
 
@@ -135,7 +135,7 @@ function renderSeasonQuestion() {
     btn.type = "button";
     btn.className = "quiz-option";
     btn.innerHTML = `
-      <img class="quiz-option__img" src="${quizSeasonImg(seasonCurrent, optIdx)}" alt="${opt.label}" decoding="async" />
+      <img class="quiz-option__img" src="${quizSeasonImg(seasonCurrent, optIdx)}" alt="" decoding="async" onerror="this.parentElement.classList.add('quiz-option--text');this.remove()" />
       <span class="quiz-option__label">${opt.label}</span>`;
     btn.addEventListener("click", () => {
       seasonAnswers[seasonCurrent] = opt.season;
