@@ -65,6 +65,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/artsy/p/artsy_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/artsy/p/artsy_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "bohemian": [
@@ -131,6 +163,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/bohemian/p/bohemian_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/bohemian/p/bohemian_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "classic": [
@@ -197,6 +261,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/classic/p/classic_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/classic/p/classic_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "coastal": [
@@ -263,6 +359,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/coastal/p/coastal_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/coastal/p/coastal_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "cottagecore": [
@@ -329,6 +457,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/cottagecore/p/cottagecore_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/cottagecore/p/cottagecore_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "edgy": [
@@ -395,6 +555,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/edgy/p/edgy_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/edgy/p/edgy_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "glam": [
@@ -461,6 +653,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/glam/p/glam_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/glam/p/glam_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "grunge": [
@@ -527,6 +751,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/grunge/p/grunge_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/grunge/p/grunge_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "minimalist": [
@@ -593,6 +849,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/minimalist/p/minimalist_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/minimalist/p/minimalist_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "parisian": [
@@ -659,6 +947,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/parisian/p/parisian_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/parisian/p/parisian_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "preppy": [
@@ -725,6 +1045,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/preppy/p/preppy_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/preppy/p/preppy_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "punk": [
@@ -791,6 +1143,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/punk/p/punk_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/punk/p/punk_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "romantic": [
@@ -857,6 +1241,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/romantic/p/romantic_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/romantic/p/romantic_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "sporty": [
@@ -923,6 +1339,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/sporty/p/sporty_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/sporty/p/sporty_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "streetwear": [
@@ -989,6 +1437,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/streetwear/p/streetwear_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/streetwear/p/streetwear_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "vintage": [
@@ -1055,6 +1535,38 @@ export const PHOTOS = {
    {
     "src": "images/styles/vintage/p/vintage_workwear.jpg",
     "label": "Workwear"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/styles/vintage/p/vintage_look_8.jpg",
+    "label": "Street style"
    }
   ]
  },
@@ -1229,6 +1741,38 @@ export const PHOTOS = {
    {
     "src": "images/body/apple_bottom.jpg",
     "label": "Bottom"
+   },
+   {
+    "src": "images/body/apple_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/body/apple_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/body/apple_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/body/apple_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/body/apple_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/body/apple_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/body/apple_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/body/apple_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "hourglass": [
@@ -1247,6 +1791,38 @@ export const PHOTOS = {
    {
     "src": "images/body/hourglass_bottom.jpg",
     "label": "Bottom"
+   },
+   {
+    "src": "images/body/hourglass_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/body/hourglass_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/body/hourglass_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/body/hourglass_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/body/hourglass_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/body/hourglass_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/body/hourglass_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/body/hourglass_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "invertedtriangle": [
@@ -1265,6 +1841,38 @@ export const PHOTOS = {
    {
     "src": "images/body/invertedtriangle_bottom.jpg",
     "label": "Bottom"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/body/invertedtriangle_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "pear": [
@@ -1283,6 +1891,38 @@ export const PHOTOS = {
    {
     "src": "images/body/pear_bottom.jpg",
     "label": "Bottom"
+   },
+   {
+    "src": "images/body/pear_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/body/pear_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/body/pear_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/body/pear_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/body/pear_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/body/pear_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/body/pear_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/body/pear_look_8.jpg",
+    "label": "Street style"
    }
   ],
   "rectangle": [
@@ -1301,6 +1941,38 @@ export const PHOTOS = {
    {
     "src": "images/body/rectangle_bottom.jpg",
     "label": "Bottom"
+   },
+   {
+    "src": "images/body/rectangle_look_1.jpg",
+    "label": "Daytime"
+   },
+   {
+    "src": "images/body/rectangle_look_2.jpg",
+    "label": "Going out"
+   },
+   {
+    "src": "images/body/rectangle_look_3.jpg",
+    "label": "Weekend"
+   },
+   {
+    "src": "images/body/rectangle_look_4.jpg",
+    "label": "Work"
+   },
+   {
+    "src": "images/body/rectangle_look_5.jpg",
+    "label": "Warm weather"
+   },
+   {
+    "src": "images/body/rectangle_look_6.jpg",
+    "label": "Cold weather"
+   },
+   {
+    "src": "images/body/rectangle_look_7.jpg",
+    "label": "Details"
+   },
+   {
+    "src": "images/body/rectangle_look_8.jpg",
+    "label": "Street style"
    }
   ]
  },
